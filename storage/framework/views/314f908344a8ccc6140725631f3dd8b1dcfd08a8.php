@@ -1,4 +1,4 @@
-@extends('templates.layout') @section('content')
+ <?php $__env->startSection('content'); ?>
 <style>
 /*
 	.bootstrap-table .fixed-table-container thead th .th-inner {
@@ -103,14 +103,6 @@
 					"visible": true,
                     "formatter": "lableLinks"
 
-				},
-                      {
-					
-					"title": "Action",
-					"align": "center",					
-					"visible": true,
-                    "formatter": "operation_link"
-
 				}
 			]
 		});
@@ -135,10 +127,8 @@
            
 		return "<div class='label label-table label-" + stageLable + "'>" + stageName + " </div>"
     }
-    
-    function operation_link(value, row, index){
-        
-    }
 
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
