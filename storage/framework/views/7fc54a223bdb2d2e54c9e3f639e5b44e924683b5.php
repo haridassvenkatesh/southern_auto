@@ -17,12 +17,30 @@
                             <li>
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Master</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Designation" href=""><span class="mini-sub-pro">Designation</span></a></li>
-                                <li><a title="Employee" href=""><span class="mini-sub-pro">Employee</span></a></li>
-                                <li><a title="Customer" href=""><span class="mini-sub-pro">Customer</span></a></li>
+                                <li><a title="Designation" href="view_designation"><span class="mini-sub-pro">Designation</span></a></li>
+                                <li><a title="Employee" href="view_employee"><span class="mini-sub-pro">Employee</span></a></li>
+                                <li><a title="Customer" href="view_customer"><span class="mini-sub-pro">Customer</span></a></li>
                                 
                             </ul>
                         </li>
+<!--
+                        <li>
+                            <a href="enquiry_master">
+                                   <span class="educate-icon educate-home icon-wrap"></span>
+                                   <span class="mini-click-non">Enquiry</span>
+                                </a>
+                           
+                                         
+                                        </li>
+-->
+                              <li>
+                            <a href="view_enquiry">
+                                   <span class="educate-icon educate-home icon-wrap"></span>
+                                   <span class="mini-click-non">Enquiry</span>
+                                </a>
+                           
+                                         
+                                        </li>
                     </ul>
 <!--
 

@@ -11,7 +11,7 @@
     <!-- favicon
 		============================================ -->
 <!--    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">-->
-    <link href="<?php echo e(asset('/image/x-icon')); ?>" rel="shortcut icon"/>
+<!--    <link href="<?php echo e(asset('/image/x-icon')); ?>" rel="shortcut icon"/>-->
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -74,12 +74,16 @@
 		============================================ -->
     <link rel="stylesheet" href="<?php echo e(asset('/css/data-table/bootstrap-table.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('/css/data-table/bootstrap-editable.css')); ?>">
-    
+     
+    <link href="<?php echo e(asset('/css/chosen/bootstrap-chosen.css')); ?>" rel="stylesheet"/>
+    <script src="<?php echo e(asset('/js/jquery.min.js')); ?>"></script>
     <!-- modernizr JS
 		============================================ -->
     <script src="<?php echo e(asset('/js/vendor/modernizr-2.8.3.min.js')); ?>"></script>
     
     
-<!--    <script src="js/vendor/modernizr-2.8.3.min.js"></script>-->
+  <script src="<?php echo e(asset('/js/jquery-1.12.4.js')); ?>"></script>
+  <script src="<?php echo e(asset('/js/jquery-ui.js')); ?>"></script>
+
 </head>
     <body>

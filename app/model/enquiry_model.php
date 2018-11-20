@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\model;
 
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Session;
 
-class designation_model extends Model
+class enquiry_model extends Model
 {
-   public function getstatus(){
+   public function get_designation_details(){
        
-        return DB::select('SELECT * from status a where a.status = 1 and a.status_id in (1,2)');
+        return DB::select('SELECT * from designation a where a.status = 1');
    } 
     
     public function insert_designation($data){

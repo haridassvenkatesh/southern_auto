@@ -11,7 +11,7 @@
     <!-- favicon
 		============================================ -->
 <!--    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">-->
-    <link href="<% asset('/image/x-icon') %>" rel="shortcut icon"/>
+<!--    <link href="<% asset('/image/x-icon') %>" rel="shortcut icon"/>-->
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -74,12 +74,16 @@
 		============================================ -->
     <link rel="stylesheet" href="<% asset('/css/data-table/bootstrap-table.css') %>">
     <link rel="stylesheet" href="<% asset('/css/data-table/bootstrap-editable.css') %>">
-    
+     
+    <link href="<% asset('/css/chosen/bootstrap-chosen.css') %>" rel="stylesheet"/>
+    <script src="<% asset('/js/jquery.min.js') %>"></script>
     <!-- modernizr JS
 		============================================ -->
     <script src="<% asset('/js/vendor/modernizr-2.8.3.min.js') %>"></script>
     
     
-<!--    <script src="js/vendor/modernizr-2.8.3.min.js"></script>-->
+  <script src="<% asset('/js/jquery-1.12.4.js') %>"></script>
+  <script src="<% asset('/js/jquery-ui.js') %>"></script>
+
 </head>
     <body>

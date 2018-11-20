@@ -5,13 +5,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          
                         <div class="product-payment-inner-st">
-                            <div class="alert alert-danger print-error-msg" style="display:none">
+                          <div class="alert alert-danger print-error-msg" style="display:none">
                 <ul></ul>
             </div>
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Add Designation</a></li> 
+                                <li class="active"><a href="#description">Edit Designation</a></li> 
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -23,14 +22,13 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    
-                                                                     <input name="designation_id" id="designation_id" type="hidden" class="form-control" value="0">
-                                                                     <label>Designation</label>
-                                                                    <input name="designation_name" id="designation_name" type="text" class="form-control" placeholder="Designation">
+                                                                    <input name="designation_id" id="designation_id" type="hidden" class="form-control" value="<?php echo e($data['designation'][0]->designation_id); ?>">
+                                                                    <label>Designation</label>
+                                                                    <input name="designation_name" id="designation_name" type="text" class="form-control" value="<?php echo e($data['designation'][0]->name); ?>">
                                                                 </div>  
                                                                     <div class="form-group res-mg-t-15">
-                                                                    <label>Decription</label>
-                                                                    <textarea name="design_description" id="design_description" placeholder="Description"></textarea>
+                                                                        <label>Decription</label>
+                                                                    <textarea name="design_description" id="design_description" placeholder="Description"> <?php echo e($data['designation'][0]->description); ?></textarea>
                                                                 </div>
                                                               
                                                             </div>
@@ -38,11 +36,15 @@
                                                                
                                                               <div class="form-group">
                                                                   <label>Status</label>
-                                                                    <select name="status" id="status" class="form-control chosen-select">
+                                                                    <select name="status" id="status" class="form-control">
 												<?php foreach($data['status'] as $row){
-												
+												$selected='';
+											if($row->status_id == $data['designation'][0]->status)
+												$selected='selected';
+											?>
+    
 												?>
-											<option value="<?= $row->status_id;?>"><?= $row->name;?></option>
+											<option value="<?= $row->status_id;?>" <?=$selected?>><?= $row->name;?></option>
 											<?php } ?>
 																	</select>
                                                                 </div>    
@@ -53,7 +55,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="payment-adress">
-                                                                     <button type="button" class="btn btn-success" onclick="btninsert()" id="submit">Submit</button>
+                                                                   <button type="button" class="btn btn-success" onclick="btnupdate()" id="submit">Update</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -71,14 +73,10 @@
             </div>
         </div>
     </div>
-
-
 <script>
-	
-     function btninsert() {
-console.log($("#designation").serialize());
+    function btnupdate() {
         if (submitEnquiryValidation() == true) {
-             // $('#submit').prop('disabled', false);
+         
        $.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -91,10 +89,12 @@ console.log($("#designation").serialize());
 				cache: false,
 				data: $("#designation").serialize(),			
 				success: function(data) {
-//                    console.log(data['status']);
+                    
                   
                      if ($.isEmptyObject(data.error)) {
+                       
                     var b = JSON.parse(data);
+                        
                    if(b.status=="1"){
                        window.location.href = 'view_designation';
                       }
@@ -148,6 +148,7 @@ console.log($("#designation").serialize());
             return true;
         }
     }
+
 </script>
 <?php $__env->stopSection(); ?>
 

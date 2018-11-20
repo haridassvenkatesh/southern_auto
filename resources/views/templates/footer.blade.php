@@ -75,6 +75,13 @@
     <script src="<% asset('/js/data-table/bootstrap-table-export.js') %>"></script>
     <script src="<% asset('/js/data-table/jspdf.min.js') %>"></script>
     <script src="<% asset('/js/data-table/jspdf.plugin.autotable.js') %>"></script>
+
+  <!-- chosen JS
+		============================================ -->
+<script src="<% asset('/js/chosen/chosen.jquery.js') %>"></script>
+<script src="<% asset('/js/chosen/chosen-active.js') %>"></script>
+
+
 </body>
 
 </html>

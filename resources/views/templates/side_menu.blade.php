@@ -77,13 +77,22 @@
                                         </li>
                                            <li><a data-toggle="collapse" data-target="#demopro" href="#">Master <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
-                                                <li><a href="all-students.html">Designation</a>
+                                                <li><a href="view_designation">Designation</a>
                                                 </li>
-                                                <li><a href="add-student.html">Employee</a>
+                                                <li><a href="view_employee">Employee</a>
                                                 </li>
-                                                <li><a href="edit-student.html">Customer</a>
+                                                <li><a href="view_customer">Customer</a>
                                                 </li>                                               
                                             </ul>
+                                        </li>
+<!--
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="enquiry_master">Enquiry <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                         
+                                        </li> 
+-->
+                                        
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="view_enquiry">Enquiry <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                         
                                         </li>
                                     </ul>
 <!--

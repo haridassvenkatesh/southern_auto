@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\model\master;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,10 +9,7 @@ use Session;
 
 class designation_model extends Model
 {
-   public function getstatus(){
-       
-        return DB::select('SELECT * from status a where a.status = 1 and a.status_id in (1,2)');
-   } 
+    
     
     public function insert_designation($data){
        
@@ -37,7 +34,7 @@ class designation_model extends Model
                                'description'=>$data['description'],
                                'parent_id'=>"0",
                                'created_by'=>"1",
-                               'created_date'=>date("Y-m-d H:i:s"),
+                               'created_date'=>$data['created_date'],
                                'status'=>$data['status']));
         
       

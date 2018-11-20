@@ -1,35 +1,23 @@
 @extends('templates.layout') @section('content')
-<style>
-/*
-	.bootstrap-table .fixed-table-container thead th .th-inner {
-		padding-top: 10px;
-		padding-bottom: 10px;
-		line-height: 1.5;
-		color: #ffffff !important;
-	}
-	
-	.bootstrap-table .fixed-table-pagination ul.pagination li.active a {
-		border-color: #d8e2e7;
-		color: #ffffff !important;
-	}
-*/
-
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="contaniner_class">
        <div class="data-table-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <a href="add_designation" class="btn btn-primary search_btn" style="float:right">
+								<i class="icon-plus icon-white"></i>Add
+						</a>
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                    <h1>Projects <span class="table-project-n">Data</span> Table</h1>
+                                    <h1>View <span class="table-project-n">Designation</span></h1>
                                 </div>
                             </div>
+                           
                             <div class="sparkline13-graph">
+                                 
                                 <div class="datatable-dashv1-list custom-datatable-overright">
-                                   
+                           
                                	<div class="table-responsive">
 
 							<table id="simple-table" class="table table-hover" data-side-pagination="server">
@@ -69,13 +57,6 @@
 			},
 
 			columns: [{
-					"field": "id",
-					"title": "Id",
-					"align": "center",
-					//"valign": "bottom",
-					"visible": false
-
-				}, {
 					//"field": "enquiryNumber",
 					"title": "SNo",
 					"align": "center",
@@ -85,14 +66,14 @@
 				}, {
 					"field": "designation_name",
 					"title": "Designation",
-					"align": "center",
+					"align": "left",
 					//"valign": "bottom",
 					"visible": true
 
 				}, {
 					"field": "description",
 					"title": "Description",
-					"align": "center",
+					"align": "left",
 					//"valign": "bottom",
 					"visible": true
 
@@ -137,7 +118,8 @@
     }
     
     function operation_link(value, row, index){
-        
+        var designation_id=row.designation_id;
+        return  "<a href='edit_designation?designation_id="+designation_id+"' class='tooltip-info btn btn-xs btn-info' data-rel='tooltip' title='Edit'><i class='whiteclr ace-icon fa fa-pencil bigger-120'></i></a>"
     }
 
 </script>
