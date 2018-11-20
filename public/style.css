@@ -1306,12 +1306,12 @@ ul.tab-custon-design li, ul.tab-review-design li {
     left: 0px;
     width: 80%;
     height: 2px;
-    background: #006DF0;
+    background: #0188cb;
     content: "";
 	transition:all .4s ease 0s;
 }
 ul.tab-custon-design li.active a, ul.tab-review-design li.active a {
-    color: #006DF0 !important;
+    color: #0188cb !important;
 }
 ul.tab-custon-design li a, ul.tab-custon-design li a:hover, ul.tab-custon-design li a:focus, ul.tab-review-design li a, ul.tab-review-design li a:hover, ul.tab-review-design li a:focus {
     font-size: 18px;
@@ -2301,12 +2301,12 @@ ul.two-part-sp li{
 	text-align:center;
 }
 .payment-adress button{
-	background:#006DF0;
-	border-color:#006DF0;
+	background:#0088cc;
+	border-color:#0088cc;
 }
 .payment-adress button:hover, .payment-adress button:focus, .payment-adress button:active, .payment-adress button:visited, .credit-card-custom a:hover, .credit-card-custom a:focus, .credit-card-custom a:active, .credit-card-custom a:visited, .waves-light:hover, .waves-light:focus, .waves-light:active, .waves-light:visited{
-	background:#006DF0;
-	border-color:#006DF0;
+	background:#0088cc;
+	border-color:#0088cc;
 	outline:none;
 	cursor:pointer;
 }
@@ -3650,7 +3650,7 @@ div#sparklinehome canvas {
     width: 100% !important;
 }
 .header-top-area {
-    background: #006DF0;
+    background: #0088cc;
 }
 .sidebar-nav .metismenu{
 	background: #fff;
@@ -3723,7 +3723,7 @@ div#sparklinehome canvas {
     background-color: #86bc42;
 }
 .footer-copyright-area {
-    background: #006DF0;
+    background: #0088cc;
 	padding: 20px 0px;
     text-align: center;
 }
@@ -4721,6 +4721,23 @@ div#sparklinehome canvas {
 }
 
 .contaniner_class{
-        margin-left: 200px;
+    margin-left: 200px;
     transition: all 0.3s;
+    min-height: 100%;
+}
+
+
+/** HARI CODE **/
+
+.sidebar-header{
+    border-bottom: 1px solid #CCC;
+}
+
+.sidebar-nav .metismenu a{
+    border-bottom: 1px solid #CCC;
+    font-size: 14px;
+}
+
+.mCustomScrollBox{
+    border-right: 1px solid #CCC;
 }
