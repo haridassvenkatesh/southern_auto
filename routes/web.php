@@ -62,6 +62,7 @@ Route::get('view_total_enquiry', 'transaction\enquiry_controller@view_total_enqu
 
 //Dashboard
 
+Route::get('old_dashboard', 'dashboard\dashboard_controller@view_dashboard1');
 Route::get('dashboard', 'dashboard\dashboard_controller@view_dashboard');
 
 
