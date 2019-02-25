@@ -1,126 +1,141 @@
  <?php $__env->startSection('content'); ?>
-<style type="text/css">
-    .shape{    
-    border-style: solid; border-width: 0 70px 40px 0; float:right; height: 0px; width: 0px;
-   /* -ms-transform:rotate(360deg); 
-    -o-transform: rotate(360deg); 
-    -webkit-transform:rotate(360deg); 
-    transform:rotate(360deg)*/;
-}
-.offer{
-    background:#fff; border:1px solid #ddd; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); margin: 15px 0; overflow:hidden;
-}
-/*.offer:hover {
-    -webkit-transform: scale(1.1); 
-    -moz-transform: scale(1.1); 
-    -ms-transform: scale(1.1); 
-    -o-transform: scale(1.1); 
-    transform:rotate scale(1.1); 
-    -webkit-transition: all 0.4s ease-in-out; 
--moz-transition: all 0.4s ease-in-out; 
--o-transition: all 0.4s ease-in-out;
-transition: all 0.4s ease-in-out;
-    }*/
-.shape {
-    border-color: rgba(255,255,255,0) #d9534f rgba(255,255,255,0) rgba(255,255,255,0);
-}
-.offer-radius{
-    border-radius:7px;
-}
-.offer-danger { border-color: #d9534f; }
-.offer-danger .shape{
-    border-color: transparent #d9534f transparent transparent;
-}
-.offer-success {    border-color: #5cb85c; }
-.offer-success .shape{
-    border-color: transparent #5cb85c transparent transparent;
-}
-.offer-default {    border-color: #999999; }
-.offer-default .shape{
-    border-color: transparent #999999 transparent transparent;
-}
-.offer-primary {    border-color: #428bca; }
-.offer-primary .shape{
-    border-color: transparent #428bca transparent transparent;
-}
-.offer-info {   border-color: #5bc0de; }
-.offer-info .shape{
-    border-color: transparent #5bc0de transparent transparent;
-}
-.offer-warning {    border-color: #f0ad4e; }
-.offer-warning .shape{
-    border-color: transparent #f0ad4e transparent transparent;
-}
+<style>
+    .enq_icon{
+        font-size:30px;
+    }
+    .widget_2{
+        text-align:center;
+    }
+    .center_align{
+        text-align:center;
+    }
+    .hpanel{
+    box-shadow: 1px 1px 2px 2px #ccc;
+    }    
+    .m1_wid{
+        margin-bottom: 20px;
+    }
+    
+    .cont_siz{
+/*        margin-top:15px;*/
+		margin-top: 65px;
+    }
+</style>    
 
-.shape-text{
-    color:#fff; font-size:12px; font-weight:bold; position:relative; right:-40px; top:2px; white-space: nowrap;
-    -ms-transform:rotate(30deg); /* IE 9 */
-    -o-transform: rotate(360deg);  /* Opera 10.5 */
-    -webkit-transform:rotate(30deg); /* Safari and Chrome */
-    transform:rotate(30deg);
-}   
-.offer-content{
-    padding:0 20px 10px;
-}
-/*@media (min-width: 487px) {
-  .container {
-    max-width: 750px;
-  }
-  .col-sm-6 {
-    width: 50%;
-  }
-}
-@media (min-width: 900px) {
-  .container {
-    max-width: 970px;
-  }
-  .col-md-4 {
-    width: 33.33333333333333%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1170px;
-  }*/
-  .col-lg-3 {
-    width: 25%;
-  }
-  }
-}
-
-</style>
 <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 <div class="contaniner_class">
-    <div class="single-pro-review-area mt-t-30 mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="widgets-programs-area">
+            <div class="container-fluid cont_siz">
 
-<!-- <span class="badge">100</span> -->
-            <div class="offer offer-success">
-                <div class="shape">
-                    <div class="shape-text">
-                        top                             
+                <div class="row"> 
+                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel widget-int-shape responsive-mg-b-30">
+                            <div class="panel-body">
+                                <div class="stats-icon pull-right">
+                                     <span class="badge"><?= $data['create_enquiry_count'] ?></span> 
+                                </div>
+                                
+                                <div class="m-t-xl m1_wid widget-cl-1 widget_2">
+                                   <a href="view_enquiry"> <i class="educate-icon educate-apps enq_icon"></i></a>
+                                </div>
+                                <div class="stats-title center_align">
+                                    <a href="view_enquiry"><h4>New Enquiry</h4></a> 
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="offer-content">
-                     <div class="shape">
-                    <div class="shape-text">
-                        top                             
+                    
+               
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel widget-int-shape responsive-mg-b-30">
+                            <div class="panel-body">
+                                <div class="stats-icon pull-right">
+                                     <span class="badge"><?= $data['quoted_enquiry_count'] ?></span> 
+                                </div>
+                                
+                                <div class="m-t-xl m1_wid widget-cl-1 widget_2">
+                                   <a href="view_enquiry_quoted"> <i class="educate-icon educate-apps enq_icon"></i></a>
+                                </div>
+                                <div class="stats-title center_align">
+                                     <a href="view_enquiry_quoted"><h4>Enquiry Quoted</h4></a> 
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                    <h3 class="lead">
-                        A success offer
-                    </h3>                       
-                    <p>
-                        And a little description.
-                        <br> and so one
-                    </p>
-                </div>
 
-            </div>
-        </div>
+
+                    
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel widget-int-shape responsive-mg-b-30">
+                            <div class="panel-body">
+                                <div class="stats-icon pull-right">
+                                     <span class="badge"><?= $data['won_enquiry_count'] ?></span> 
+                                </div>
+                                
+                                <div class="m-t-xl m1_wid widget-cl-1 widget_2">
+                                   <a href="view_enquiry_converted"> <i class="educate-icon educate-apps enq_icon"></i></a>
+                                </div>
+                                <div class="stats-title center_align">
+                                     <a href="view_enquiry_converted"><h4>Project</h4></a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel widget-int-shape responsive-mg-b-30">
+                            <div class="panel-body">
+                                <div class="stats-icon pull-right">
+                                     <span class="badge"><?= $data['lost_enquiry_count'] ?></span> 
+                                </div>
+                                
+                                <div class="m-t-xl m1_wid widget-cl-1 widget_2">
+                                   <a href="view_enquiry_lost"> <i class="educate-icon educate-apps enq_icon"></i></a>
+                                </div>
+                                <div class="stats-title center_align">
+                                     <a href="view_enquiry_lost"><h4>Lost</h4></a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div></div><br/>
+                    
+                <div class="row"> 
+                    
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel widget-int-shape responsive-mg-b-30">
+                            <div class="panel-body">
+                                <div class="stats-icon pull-right">
+                                     <span class="badge"><?= $data['closed_enquiry_count'] ?></span> 
+                                </div>
+                                
+                                <div class="m-t-xl m1_wid widget-cl-1 widget_2">
+                                   <a href="view_enquiry_closed"> <i class="educate-icon educate-apps enq_icon"></i></a>
+                                </div>
+                                <div class="stats-title center_align">
+                                     <a href="view_enquiry_closed"><h4>Closed</h4></a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+                    
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel widget-int-shape responsive-mg-b-30">
+                            <div class="panel-body">
+                                <div class="stats-icon pull-right">
+                                     <span class="badge"><?= $data['hold_enquiry_count'] ?></span> 
+                                </div>
+                                
+                                <div class="m-t-xl m1_wid widget-cl-1 widget_2">
+                                   <a href="view_enquiry_hold"> <i class="educate-icon educate-apps enq_icon"></i></a>
+                                </div>
+                                <div class="stats-title center_align">
+                                     <a href="view_enquiry_hold"><h4>Hold</h4></a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

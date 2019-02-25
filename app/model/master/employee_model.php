@@ -6,19 +6,19 @@ use Session;
 
 class employee_model extends Model
 {
-  
+ 
     public function count_employee_id($data){
-        
+
          return DB::select('SELECT * from employee  where employee_id!=? and employee_unique_id=? ',array($data['employee_id'],$data['employee_unique_id']));
     } 
     
     public function count_employee_phone($data){
         
-         return DB::select('SELECT * from employee  where employee_id!=? and employee_unique_id=? ',array($data['employee_id'],$data['phone_no1']));
+         return DB::select('SELECT * from employee  where employee_id!=? and phone_no1=? ',array($data['employee_id'],$data['phone_no1']));
     }
     public function count_employee_email($data){
         
-         return DB::select('SELECT * from employee  where employee_id!=? and employee_unique_id=? ',array($data['employee_id'],$data['email_id']));
+         return DB::select('SELECT * from employee  where employee_id!=? and email=? ',array($data['employee_id'],$data['email_id']));
     }
     
     public function insert_employee($data){
@@ -42,7 +42,7 @@ class employee_model extends Model
                 ->where('employee_id','=',$data['employee_id'])
                 ->update(array(
                                 'name'=>$data['employee_name'],
-                               'employee_unique_id'=>$data['employee_unique_id'],                               
+//                               'employee_unique_id'=>$data['employee_unique_id'],                               
                                'designation_id'=>$data['designation_id'],
                                'address'=>$data['address'],
                                'phone_no1'=>$data['phone_no1'],
@@ -51,7 +51,8 @@ class employee_model extends Model
                                'dob'=>$data['dob'],
                                'doj'=>$data['doj'],
 //                               'releaving_date'=>$data['releaving_date'],
-                               'created_date'=>$data['created_date'],
+                                'updated_date'=>$data['created_date'],
+                               'updated_by'=>$data['user_id'],
                                'remark'=>$data['remarks'],
                                'status'=>$data['status']
                 )
@@ -75,6 +76,9 @@ class employee_model extends Model
                                'doj'=>$data['doj'],
 //                               'releaving_date'=>$data['releaving_date'],
                                'created_date'=>$data['created_date'],
+                               'created_by'=>$data['user_id'],
+                               'updated_date'=>$data['created_date'],
+                               'updated_by'=>$data['user_id'],
                                'remark'=>$data['remarks'],
                                'status'=>$data['status']
                               
@@ -97,17 +101,18 @@ class employee_model extends Model
         $count=  DB::table('user_login')
                 ->select('login_id')
                 ->where('user_id','=',$data['insert_employee_id'])->get();
-        
-        
-     if(count($count)>0)
-     {
+        $password=$data['employee_unique_id'].'#';
+
+             if(count($count)>0)
+        {
          
          
           $result = DB::table('user_login')
                 ->where('user_id','=',$data['insert_employee_id'])
                 ->update(array(
-                                'user_name'=>$data['employee_unique_id'],
-                               'password'=>md5($data['employee_unique_id']),
+//                                'user_name'=>$data['employee_unique_id'],
+//                               'password'=>md5($data['employee_unique_id']),
+//                               'password'=>password_hash($data['employee_unique_id'], PASSWORD_DEFAULT),
                                'designation_id'=>$data['designation_id'],                               
                                'created_date'=>$data['created_date'],                               
                                'status'=>$data['status']
@@ -121,7 +126,8 @@ class employee_model extends Model
          $result= DB::table('user_login')
                 ->insertGetId(array('user_id'=>$data['insert_employee_id'],
                                'user_name'=>$data['employee_unique_id'],
-                               'password'=>md5($data['employee_unique_id']),
+                                    'password'=>md5($password),
+//                               'password'=>password_hash($data['employee_unique_id'], PASSWORD_DEFAULT),
                                'designation_id'=>$data['designation_id'],                               
                                'created_date'=>$data['created_date'],                               
                                'status'=>$data['status']
@@ -141,7 +147,8 @@ class employee_model extends Model
         $result = DB::table('employee')
               
             ->join('status', 'status.status_id', '=', 'employee.status')           
-            ->join('designation', 'designation.designation_id', '=', 'employee.designation_id')           
+            ->join('designation', 'designation.designation_id', '=', 'employee.designation_id')   
+            ->where('employee.designation_id','!=','1')
             ->select('employee.employee_id','employee.name as employee_name','employee.employee_unique_id','designation.name as designation_name','status.name as status_name','status.status_id','employee.phone_no1','employee.email');
         
          if(!empty($data['search']))

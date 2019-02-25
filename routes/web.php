@@ -12,10 +12,12 @@
 */
 
 
-
-//login page
-Route::get('login', 'login_controller@login');
-Route::get('logout', 'login_controller@logout');
+Route::get('/', 'login\login_controller@login');
+Route::get('login', 'login\login_controller@login');
+Route::get('logout', 'login\login_controller@logout');
+Route::post('login_submit', 'login\login_controller@login_submit');
+Route::get('change_password', 'common\common_controller@change_password');
+Route::post('update_password', 'common\common_controller@update_password');
 
 //Master Designation Details
 Route::get('add_designation', 'master\designation_controller@add_designation');
@@ -50,4 +52,16 @@ Route::get('get_contact_person', 'transaction\enquiry_controller@get_contact_per
 Route::get('get_contact_person_email', 'transaction\enquiry_controller@get_contact_person_email');
 Route::get('get_enquiry_details', 'transaction\enquiry_controller@get_enquiry_details');
 Route::get('view_enquiry', 'transaction\enquiry_controller@view_enquiry');
+Route::get('view_enquiry_quoted', 'transaction\enquiry_controller@view_enquiry_quoted');
+Route::get('view_enquiry_converted', 'transaction\enquiry_controller@view_enquiry_converted');
+Route::get('view_enquiry_closed', 'transaction\enquiry_controller@view_enquiry_closed');
+Route::get('view_enquiry_lost', 'transaction\enquiry_controller@view_enquiry_lost');
+Route::get('view_enquiry_hold', 'transaction\enquiry_controller@view_enquiry_hold');
+Route::get('view_total_enquiry', 'transaction\enquiry_controller@view_total_enquiry');
+
+
+//Dashboard
+
+Route::get('dashboard', 'dashboard\dashboard_controller@view_dashboard');
+
 

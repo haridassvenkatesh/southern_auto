@@ -5,6 +5,25 @@
    <div class="single-pro-review-area mt-t-30 mg-b-15">
       <div class="container-fluid">
          <div class="row">
+			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="view_employee">Master</a> <span class="bread-slash">/</span>
+                                            </li>
+                                             <li><a href="view_employee">Employee</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Edit Employee</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                <div class="product-payment-inner-st">
                   <div class="alert alert-danger print-error-msg" style="display:none">
@@ -25,11 +44,11 @@
                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                              <div class="form-group">
                                                 <input name="employee_id" id="employee_id" type="hidden" class="form-control" value="<% $data['employee_details'][0]->employee_id %>">
-                                                <label>Employee Name</label>
+                                                <label>Employee Name <span style="color:red"> * </span></label>
                                                 <input name="employee_name" id="employee_name" type="text" class="form-control" placeholder="Employee Name" value="<% $data['employee_details'][0]->name %>">
                                              </div>
                                              <div class="form-group">
-                                                <label>Designation</label>
+                                                <label>Designation <span style="color:red"> * </span></label>
                                                 <select name="designation_id" id="designation_id" class="form-control chosen-select" placeholder="designation Name" >
                                                    <option value="">Select Designation</option>
                                                    <?php foreach($data['dsesignation'] as $row){
@@ -46,23 +65,23 @@
                                              </div>
                                              
                                                 <div class="form-group">
-                                                    <label>Employee Id</label>
-                                                    
-                                                    <input name="employee_unique_id" id="employee_unique_id" type="text" class="form-control" placeholder="Employee Id" value="<% $data['employee_details'][0]->employee_unique_id %>">
+                                                    <label>Employee Id <span style="color:red"> * </span></label>
+                                                     <input name="employee_unique_id" id="employee_unique_id" type="hidden" class="form-control" placeholder="Employee Id" value="<% $data['employee_details'][0]->employee_unique_id %>">
+                                                    <input name="employee_unique_id1" id="employee_unique_id1" type="text" class="form-control" placeholder="Employee Id" value="<% $data['employee_details'][0]->employee_unique_id %>" disabled>
                                                 </div>  
                                                 
                                                 
                                              <div class="form-group">
-                                                <label>Phone No</label>
-                                                <input name="phone_no1" id="phone_no1" type="text" class="form-control" placeholder="Phone No" value="<% $data['employee_details'][0]->phone_no1 %>">
+                                                <label>Phone No <span style="color:red"> * </span></label>
+                                                <input name="phone_no1" id="phone_no1" type="text" class="form-control" placeholder="Phone No" value="<% $data['employee_details'][0]->phone_no1 %>" onkeypress="return isNumberKey(event)">
                                              </div>
                                              <div class="form-group">
                                                 <label>Additional Phone No</label>
-                                                <input name="phone_no2" id="phone_no2" type="text" class="form-control" placeholder="Additional Phone No" value="<% $data['employee_details'][0]->phone_no2 %>">
+                                                <input name="phone_no2" id="phone_no2" type="text" class="form-control" placeholder="Additional Phone No" value="<% $data['employee_details'][0]->phone_no2 %>" onkeypress="return isNumberKey(event)">
                                              </div>
                                              <div class="form-group">
-                                                <label>Email Id</label>
-                                                <input name="email_id" id="email_id" type="text" class="form-control" placeholder="Email Id" value="<% $data['employee_details'][0]->email %>">
+                                                <label>Email Id <span style="color:red"> * </span></label>
+                                                <input name="email_id" id="email_id" type="text" class="form-control" placeholder="Email Id" value="<% $data['employee_details'][0]->email %>" onkeyup="ValidateEmailID(this);">
                                              </div>
                                              <div class="form-group res-mg-t-15">
                                                 <label>
@@ -74,7 +93,7 @@
                                                  
                                              </div>
                                                <div class="form-group">
-                                                <label>Status</label>
+                                                <label>Status <span style="color:red"> * </span></label>
                                                 <select name="status" id="status" class="form-control chosen-select" placeholder="Status" >
                                                    <option value="">Select Status</option>
                                                  <?php foreach($data['status'] as $row){
@@ -91,28 +110,28 @@
                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                   <label>
-                                                 DOB
+                                                 DOB <span style="color:red"> * </span>
                                                  </label>
-                                                <input name="dob" id="dob" type="text" class="form-control" placeholder="DOB" value="<% $data['employee_details'][0]->dob %>">
+                                                <input name="dob" id="dob" type="text" class="form-control" placeholder="DOB" value="<% $data['employee_details'][0]->dob %>" readonly>
                                              </div>
                                              <div class="form-group">
                                                   <label>
-                                                 DOJ
+                                                 DOJ <span style="color:red"> * </span>
                                                  </label>
-                                                <input name="doj" id="doj" type="text" class="form-control" placeholder="DOJ" value="<% $data['employee_details'][0]->doj %>">
+                                                <input name="doj" id="doj" type="text" class="form-control" placeholder="DOJ" value="<% $data['employee_details'][0]->doj %>" readonly>
                                              </div>
                                              <div class="form-group res-mg-t-15">
                                                  <label>
-                                                 Address
+                                                 Address <span style="color:red"> * </span>
                                                  </label>
-                                                <textarea name="address" id="address" placeholder="Address" style="height: 115px;" ><% $data['employee_details'][0]->address %></textarea>
+                                                <textarea name="address" id="address" placeholder="Address" style="height: 100px;" ><?= $data['employee_details'][0]->address ?></textarea>
                                              </div>
                                            
                                              <div class="form-group res-mg-t-15">
                                                   <label>
                                                 Remarks
                                                  </label>
-                                                <textarea name="remarks" id="remarks" placeholder="Remarks" style="height: 115px;"><% $data['employee_details'][0]->remark %></textarea>
+                                                <textarea name="remarks" id="remarks" placeholder="Remarks" style="height: 100px;"><?= $data['employee_details'][0]->remark ?></textarea>
                                              </div>
                                                  <div class="form-group res-mg-t-15">
                                                   <label>
@@ -158,8 +177,35 @@
       changeYear: true,
          dateFormat: 'dd-mm-yy'
         });
-   
+    function ValidateEmailID(txtEmailID) {
+
+            var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+            if (txtEmailID.value == "") {
+
+                $('#email_id').css('border', '1px solid #dde6e9 ');
+                return true;
+
+            }
+
+            else if (filter.test(txtEmailID.value)) {
+
+            $('#email_id').css('border', '1px solid #dde6e9 ');
+                return true;
+
+            }
+
+            else {
+
+               $('#email_id').css('border', '2px solid red ');
+                return false;
+
+            }
+
+        }
        function btninsert() {
+		    if (submitEnquiryValidation() == true) {
+		   		    $('#submit').prop('disabled', true);
         var form_data = new FormData(); 
            var image1="";
         if($("#photo").prop("files")){
@@ -194,6 +240,7 @@
                          window.location.href = 'view_employee';                         
                         }
                   } else {
+					   $('#submit').prop('disabled', false);
                       printErrorMsg(data.error);
                       $('html, body').animate({
                           scrollTop: '0px'
@@ -202,11 +249,18 @@
                   }
    			},
    			error: function(jqXHR, textStatus, errorThrown) {	
-                      $('#btnSubmitid').prop('disabled', false);
+                      $('#submit').prop('disabled', false);
    			}
    		})
-          //}
+          }
       }
+	
+	function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
    function printErrorMsg(msg) {
               $(".print-error-msg").find("ul").html('');
               $(".print-error-msg").css('display', 'block');
@@ -214,17 +268,25 @@
                   $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
               });
           }
-      function submitEnquiryValidation() {
+     function submitEnquiryValidation() {
           var flag = true;
           var employee_name = $('#employee_name').val();
           var designation_id = $('#designation_id').val();
+		  var employee_unique_id = $('#employee_unique_id').val();
           var phone_no1 = $('#phone_no1').val();
           var email_id = $('#email_id').val();
+          var dob = $('#dob').val();
+          var doj = $('#doj').val();
+          var address = $('#address').val();
           var status = $('#status').val();
           $('#employee_name').css('border', '1px solid #dde6e9 ');
           $('#designation_id_chosen').css('border', '1px solid #dde6e9 ');
+          $('#employee_unique_id').css('border', '1px solid #dde6e9 ');
           $('#phone_no1').css('border', '1px solid #dde6e9 ');
           $('#email_id').css('border', '1px solid #dde6e9 ');
+          $('#dob').css('border', '1px solid #dde6e9 ');
+          $('#doj').css('border', '1px solid #dde6e9 ');
+          $('#address').css('border', '1px solid #dde6e9 ');
           $('#status_chosen').css('border', '1px solid #dde6e9 ');
              
           //Company Name
@@ -238,6 +300,11 @@
               flag = false;
               return flag;
           } 
+		  if (employee_unique_id == '') {
+             $('#employee_unique_id').css('border', '2px solid red');
+                  flag = false;
+                  return false;
+          }         
           else if (phone_no1 == '' ) {
               $('#phone_no1').css('border', '2px solid red');
               flag = false;
@@ -245,6 +312,18 @@
           } 
            else if (email_id == '' ) {
               $('#email_id').css('border', '2px solid red');
+              flag = false;
+              return flag;
+          }  else if (dob == '' ) {
+              $('#dob').css('border', '2px solid red');
+              flag = false;
+              return flag;
+          }  else if (doj == '' ) {
+              $('#doj').css('border', '2px solid red');
+              flag = false;
+              return flag;
+          }  else if (address == '' ) {
+              $('#address').css('border', '2px solid red');
               flag = false;
               return flag;
           } 

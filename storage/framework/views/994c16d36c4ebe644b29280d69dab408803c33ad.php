@@ -5,6 +5,24 @@
       <div class="container-fluid">
          <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="breadcome-list single-page-breadcome">
+                  <div class="row">
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <ul class="breadcome-menu">
+                           <li><a href="view_customer">Master</a> <span class="bread-slash">/</span>
+                           </li>
+                           <li><a href="view_customer">Customer</a> <span class="bread-slash">/</span>
+                           </li>
+                           <li><span class="bread-blod">Add Customer</span>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                <div class="product-payment-inner-st">
                   <div class="alert alert-danger print-error-msg" style="display:none">
                      <ul></ul>
@@ -23,28 +41,28 @@
                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                              <div class="form-group">
                                                 <input name="customer_id" id="customer_id" type="hidden" class="form-control" value="0">
-                                                <label>Name</label>
+                                                <label>Name <span style="color:red">*</span></label>
                                                 <input name="customer_name" id="customer_name" type="text" class="form-control" placeholder="Customer Name">
                                              </div>
                                              <div class="form-group">
                                                 <label>GST NO</label>
-                                                <input name="gst_no" id="gst_no" type="text" class="form-control" placeholder="GST No">
+                                                <input name="gst_no" id="gst_no" type="text" class="form-control" placeholder="GST No" onkeyup="ValidateGST(this);">
                                              </div>
                                              <div class="form-group">
-                                                <label>Phone No</label>
-                                                <input name="phone_no1" id="phone_no1" type="text" class="form-control" placeholder="Phone No">
+                                                <label>Phone No <span style="color:red">*</span></label>
+                                                <input name="phone_no1" id="phone_no1" type="text" class="form-control" placeholder="Phone No" onkeypress="return isNumberKey(event)">
                                              </div>
                                              <div class="form-group">
                                                 <label>Additional Phone No</label>
-                                                <input name="phone_no2" id="phone_no2" type="text" class="form-control" placeholder="Additional Phone No">
+                                                <input name="phone_no2" id="phone_no2" type="text" class="form-control" placeholder="Additional Phone No" onkeypress="return isNumberKey(event)">
                                              </div>
                                              <div class="form-group">
-                                                <label>Email Id</label>
-                                                <input name="email_id1" id="email_id1" type="text" class="form-control" placeholder="Email Id">
+                                                <label>Email Id <span style="color:red">*</span></label>
+                                                <input name="email_id1" id="email_id1" type="text" class="form-control" placeholder="Email Id" onkeyup="ValidateEmailID(this);">
                                              </div>
                                              <div class="form-group">
                                                 <label>Additional Email Id</label>
-                                                <input name="email_id2" id="email_id2" type="text" class="form-control" placeholder="Additional Email Id">
+                                                <input name="email_id2" id="email_id2" type="text" class="form-control" placeholder="Additional Email Id" onkeyup="ValidateEmailID(this);">
                                              </div>
                                              <label>Logo</label>
                                              <div class="form-group res-mg-t-15">
@@ -52,16 +70,16 @@
                                              </div>
                                           </div>
                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                             <label>Company Address</label>
+                                             <label>Company Address <span style="color:red">*</span></label>
                                              <div class="form-group res-mg-t-15">
-                                                <textarea name="address" id="address" placeholder="Address" style="height: 184px;"></textarea>
+                                                <textarea name="address" id="address" placeholder="Address" style="height: 165px;"></textarea>
                                              </div>
                                              <label>Remarks</label>
                                              <div class="form-group res-mg-t-15">
-                                                <textarea name="remarks" id="remarks" placeholder="Remarks" style="height: 184px;"></textarea>
+                                                <textarea name="remarks" id="remarks" placeholder="Remarks" style="height: 165px;"></textarea>
                                              </div>
                                              <div class="form-group">
-                                                <label>Status</label>
+                                                <label>Status <span style="color:red">*</span></label>
                                                 <select name="status" id="status" class="form-control chosen-select" placeholder="Status"  >
                                                    <option value="">Select Status</option>
                                                    <?php foreach($data['status'] as $row){
@@ -90,27 +108,22 @@
                                                             <input id="sno_<?=$sno?>" name="commonItems[<?=$sno?>][sno]" type="hidden" value="<?=$sno?>" />
                                                             <input id="contact_person_name_<?=$sno?>" name="commonItems[<?=$sno?>][contact_person_name]" type="text" class="form-control" placeholder="Contact Person" />
                                                          </td>
-                                                         
                                                          <td>
                                                             <input id="contact_person_designation_<?=$sno?>" name="commonItems[<?=$sno?>][contact_person_designation]" type="text" class="form-control" placeholder="Designation"/>
                                                          </td>
                                                          <td>
-                                                            <input id="contact_person_phone_<?=$sno?>" name="commonItems[<?=$sno?>][contact_person_phone]" type="text" class="form-control" placeholder="Phone" />
-                                                            
+                                                            <input id="contact_person_phone_<?=$sno?>" name="commonItems[<?=$sno?>][contact_person_phone]" type="text" class="form-control" placeholder="Phone" onkeypress="return isNumberKey(event)"/>
                                                          </td>
                                                          <td>
-                                                            <input id="contact_person_email_<?=$sno?>" name="commonItems[<?=$sno?>][contact_person_email]" type="text" class="form-control" placeholder="Email Id"/>
+                                                            <input id="contact_person_email_<?=$sno?>" name="commonItems[<?=$sno?>][contact_person_email]" type="text" class="form-control" placeholder="Email Id" onkeyup="ValidateEmailID(this);"/>
                                                          </td>
                                                          <td style="text-align:right;">
                                                             <a class="btn btn-sm btn-primary btn-inline addNewRow" style=" margin-right: 3px;"><i class="fa fa-plus"  aria-hidden="true"></i></a>
                                                             <a class="btn btn-sm btn-danger btn-inline removeNewRow"><i class="fa fa-trash-o"  aria-hidden="true"></i></a>
                                                          </td>
                                                       </tr>
-                                                     
                                                    </tbody>
-                                                   
                                                 </table>
-                                                <!--   <input class="btn btn-success  pull-right" onclick="addnew_row()" type="button" value="Add" style="margin-right: 22px;"> -->
                                              </div>
                                           </div>
                                        </div>
@@ -137,57 +150,119 @@
 <script src="<?php echo e(asset('/js/chosen.jquery.min.js')); ?>"></script>
 <script>
    var count=0;
-$(document).on("click", ".addNewRow", function(e) {
+   $(document).on("click", ".addNewRow", function(e) {
     AddProductRow();
-  });
-    
- function submitEnquiryValidation() {
+   });
+		function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+} 
+    function ValidateEmailID(txtEmailID) {
+
+            var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+            if (txtEmailID.value == "") {
+
+                txtEmailID.style.border = "";
+
+                return true;
+
+            }
+
+            else if (filter.test(txtEmailID.value)) {
+
+                txtEmailID.style.border = "";
+
+                return true;
+
+            }
+
+            else {
+
+                txtEmailID.style.borderColor = "red";
+
+                return false;
+
+            }
+
+        }  function ValidateGST(txtGst) {
+
+            var filter = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+
+            if (txtGst.value == "") {
+
+                txtGst.style.border = "";
+
+                return true;
+
+            }
+
+            else if (filter.test(txtGst.value)) {
+
+                txtGst.style.border = "";
+
+                return true;
+
+            }
+
+            else {
+
+                txtGst.style.borderColor = "red";
+
+                return false;
+
+            }
+
+        }
+   function submitEnquiryValidation() {
         var flag = true;
         var customer_name = $('#customer_name').val();
         var phone_no1 = $('#phone_no1').val();
         var email_id1 = $('#email_id1').val();
         var address = $('#address').val();
         var status = $('#status').val();
-
+   
         $('#customer_name').css('border', '1px solid #dde6e9 ');
         $('#phone_no1').css('border', '1px solid #dde6e9 ');
         $('#email_id1').css('border', '1px solid #dde6e9 ');
         $('#address').css('border', '1px solid #dde6e9 ');
         $('#status_chosen').css('border', '0px solid #dde6e9');
-
+   
         //Company Name
         if (customer_name == '') {
            $('#customer_name').css('border', '2px solid red');
                 flag = false;
                 return false;
-        }         
+        }
         else if (phone_no1 == '' ) {
             $('#phone_no1').css('border', '2px solid red');
             flag = false;
             return flag;
-        } 
+        }
        else if (email_id1 == '' ) {
             $('#email_id1').css('border', '2px solid red');
             flag = false;
             return flag;
-        } 
+        }
        else if (address == '' ) {
             $('#address').css('border', '2px solid red');
             flag = false;
             return flag;
-        } 
+        }
         else if (status == '' || status <=0 ) {
             $('#status_chosen').css('border', '2px solid red');
             flag = false;
             return flag;
-        } 
+        }
         else{
             return true;
         }
-    }    
-    
-
-function customerArrayValidation() {
+    }
+   
+   
+   function customerArrayValidation() {
     flag = true;
    
       $('.commonItems').each(function(index, element) {
@@ -197,15 +272,15 @@ function customerArrayValidation() {
           $('#contact_person_designation_' + id).css('border', '1px solid #dde6e9 ');
           $('#contact_person_phone_' + id).css('border', '1px solid #dde6e9 ');
           $('#contact_person_email_' + id).css('border', '1px solid #dde6e9 ');
-       
+   
         contact_person_name = $('#contact_person_name_' + id).val();
         contact_person_designation = $('#contact_person_designation_' + id).val();
         contact_person_phone = $('#contact_person_phone_' + id).val();
         contact_person_email = $('#contact_person_email_' + id).val();
-        
-        
+   
+   
         if (contact_person_name=="") {
-
+   
           $('#contact_person_name_' + id).css('border', '2px solid red');
           flag = false;
           return false;
@@ -225,16 +300,16 @@ function customerArrayValidation() {
           flag = false;
           return false;
         }
-       
+   
       });
-
-    
+   
+   
     //Product Details
     return flag;
-  }
-
+   }
+   
    function AddProductRow() {
-    
+   
       if (customerArrayValidation() == true) {
         var id_attr = elementid = '';
         var max = value = 0;
@@ -246,31 +321,31 @@ function customerArrayValidation() {
             max = id;
         });
         item_count = max + 1;
-        $("#tableId tbody").append('<tr class="row1 commonItems" id="row_'+item_count+'"><td> <input id="sno_'+item_count+'" name="commonItems['+item_count+'][sno]" type="hidden" value="'+item_count+'" /><input id="contact_person_name_'+item_count+'" name="commonItems['+item_count+'][contact_person_name]" type="text" class="form-control" placeholder="Contact Person" /></td><td><input id="contact_person_designation_'+item_count+'" name="commonItems['+item_count+'][contact_person_designation]" type="text" class="form-control" placeholder="Designation"/></td><td><input id="contact_person_phone_'+item_count+'" name="commonItems['+item_count+'][contact_person_phone]" type="text" class="form-control" placeholder="Phone" /></td><td><input id="contact_person_email_'+item_count+'" name="commonItems['+item_count+'][contact_person_email]" type="text" class="form-control" placeholder="Email Id"/> </td><td style="text-align:right;"><a class="btn btn-sm btn-primary btn-inline addNewRow" style=" margin-right: 3px;"><i class="fa fa-plus"  aria-hidden="true"></i></a><a class="btn btn-sm btn-danger btn-inline removeNewRow"><i class="fa fa-trash-o"  aria-hidden="true"></i></a> </td></tr>');
+        $("#tableId tbody").append('<tr class="row1 commonItems" id="row_'+item_count+'"><td> <input id="sno_'+item_count+'" name="commonItems['+item_count+'][sno]" type="hidden" value="'+item_count+'" /><input id="contact_person_name_'+item_count+'" name="commonItems['+item_count+'][contact_person_name]" type="text" class="form-control" placeholder="Contact Person" /></td><td><input id="contact_person_designation_'+item_count+'" name="commonItems['+item_count+'][contact_person_designation]" type="text" class="form-control" placeholder="Designation"/></td><td><input id="contact_person_phone_'+item_count+'" name="commonItems['+item_count+'][contact_person_phone]" type="text" class="form-control" placeholder="Phone" onkeypress="return isNumberKey(event)"/></td><td><input id="contact_person_email_'+item_count+'" name="commonItems['+item_count+'][contact_person_email]" type="text" class="form-control" placeholder="Email Id" onkeyup="ValidateEmailID(this);"/> </td><td style="text-align:right;"><a class="btn btn-sm btn-primary btn-inline addNewRow" style=" margin-right: 3px;"><i class="fa fa-plus"  aria-hidden="true"></i></a><a class="btn btn-sm btn-danger btn-inline removeNewRow"><i class="fa fa-trash-o"  aria-hidden="true"></i></a> </td></tr>');
       }
-    
-
-  }
-
-  //Remove Item
-  $(document).on("click", ".removeNewRow", function(e) {
+   
+   
+   }
+   
+   //Remove Item
+   $(document).on("click", ".removeNewRow", function(e) {
     var id = $(this).attr('id');
     var remove_count = parseInt($('#commonSalesTable tr.commonItems').length);
-
+   
     if (remove_count > 1) {
       $(this).parent().parent().remove();
       commonAllTotal(0);
     }
-  });
-  //Remove Item
+   });
+   //Remove Item
 </script>
 <script>
    function btninsert() {
    
-//          if (submitEnquiryValidation() == true) {
-//           if (customerArrayValidation() == true) {
-           
-                      
+         if (submitEnquiryValidation() == true) {
+          if (customerArrayValidation() == true) {
+      $('#submit').prop('disabled', true);
+   
     var form_data = new FormData();
        var image1="";
     if($("#photo").prop("files")){
@@ -282,7 +357,7 @@ function customerArrayValidation() {
    $.each(other_data, function(key, input) {
    form_data.append(input.name, input.value);
    });
-               
+   
      $.ajaxSetup({
    headers: {
    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -298,30 +373,29 @@ function customerArrayValidation() {
         processData: false,
    success: function(data) {
    
-   //alert(data);
-                    if ($.isEmptyObject(data.error)) {
+              if ($.isEmptyObject(data.error)) {
                   var b = JSON.parse(data);
                  if(b.status=="1"){
                      window.location.href = 'view_customer';
-                    
+   
                     }
               } else {
+   	  		    $('#submit').prop('disabled', false);
                   printErrorMsg(data.error);
                   $('html, body').animate({
                       scrollTop: '0px'
                   }, 1500);
                   return false;
-              }  
+              }
    },
    error: function(jqXHR, textStatus, errorThrown) {
-                  $('#btnSubmitid').prop('disabled', false);
+          $('#submit').prop('disabled', false);
    }
    });
-               
-              //}
-//          }
-
-      //}
+   
+              }
+         }
+   
    }
    function printErrorMsg(msg) {
           $(".print-error-msg").find("ul").html('');
@@ -333,6 +407,4 @@ function customerArrayValidation() {
    
 </script>
 <?php $__env->stopSection(); ?>
-
-
 <?php echo $__env->make('templates.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

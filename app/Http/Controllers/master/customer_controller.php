@@ -20,36 +20,56 @@ class customer_controller extends Controller
 
     public function add_customer()
     {
-        //        if(Session::get('user_id'))
-        //        {
-        //            $flag =1;
-        //            foreach(Session::get('functionName') as $row)
-        //            {
-        //                if($row->function_name == "add_designation")
-        //                {
-        //                  var_dump("kavith");
-        $common_model   = new common_model();
-        $data['status'] = $common_model->getstatus();
-
-        // var_dump($data);die;
-        return view('master.customer.add_customer')->with('data', $data);
-        //                }
-        //
-        //            }
-        //
-        //            if($flag==1)
-        //            {
-        //                return "u r unautherized";
-        //            }
-        //        }
-        //        else
-        //        {
-       // return view('master.login.login');
-        //  }
+                if(Session::get('user_id'))
+                {
+//                    $flag =1;
+//                    foreach(Session::get('functionName') as $row)
+//                    {
+//                        if($row->function_name == "add_customer")
+//                        {
+                        $common_model   = new common_model();
+                        $data['status'] = $common_model->getstatus();        
+                        return view('master.customer.add_customer')->with('data', $data);
+//                        }
+        
+//                    }
+//        
+//                    if($flag==1)
+//                    {
+//                        return "u r unautherized";
+//                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
     }
 
 public function view_customer(){
-  return view('master.customer.view_customer');
+    
+       if(Session::get('user_id'))
+                {
+//                    $flag =1;
+//                    foreach(Session::get('functionName') as $row)
+//                    {
+//                        if($row->function_name == "view_customer")
+//                        {
+                            return view('master.customer.view_customer');
+//                        }
+//        
+//                    }
+//        
+//                    if($flag==1)
+//                    {
+//                        return "u r unautherized";
+//                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+    
+  
 }
 
 public function get_customer_details(){
@@ -79,7 +99,8 @@ public function get_customer_details(){
     public function insert_customer(request $req)
     {
 
-
+ if(Session::get('user_id'))
+                {
         DB::beginTransaction();
 
         try {
@@ -95,6 +116,7 @@ public function get_customer_details(){
             $data['address']       = "";
             $data['remarks']       = "";
             $data['status']        = "";
+            $data['user_id']        = Session::get('user_id');
             if ($req->customer_name != "") {
                 $data['customer_name'] = $req->customer_name;
             }
@@ -384,7 +406,14 @@ if(count($count_gst_no)>0){
                     $data['contact_person_designation']=$ci['contact_person_designation'];
                     $data['contact_person_phone']=$ci['contact_person_phone'];
                     $data['contact_person_email']=$ci['contact_person_email'];
-                    $insert_contact_person = $customer_model->insert_contact_person($data);
+                    $data['contact_person_id']=$ci['contact_person_id'];
+                    if($ci['contact_person_id']==0){
+                           $insert_contact_person = $customer_model->insert_contact_person($data);
+                    }
+                    else{
+                           $insert_contact_person = $customer_model->update_contact_person_individual($data);
+                    }
+                 
                     if($insert_contact_person==false){
                        DB::rollback();
                         return json_encode(array(
@@ -420,23 +449,50 @@ if(count($count_gst_no)>0){
             DB::rollback();
             // something went wrong
         }
+      }
+                else
+                {
+                    return view('login.login');
+                }
     }
 
 
     public function edit_customer(request $req)
     {
-        $data['customer_id']=$req->customer_id;
-        $customer_model = new customer_model();
-        $common_model = new common_model();
-        $data['status'] = $common_model ->getstatus();
-        $data['customer_details'] = $customer_model ->get_edit_customer_list($data);
-        $data['contact_person_details'] = $customer_model ->get_edit_contact_person_list($data);
-        // echo "<pre>";
-        // var_dump($data['customer_details']);
-        // var_dump($data['contact_person_details']);die;
+        
+        
+       if(Session::get('user_id'))
+                {
+//                    $flag =1;
+//                    foreach(Session::get('functionName') as $row)
+//                    {
+//                        if($row->function_name == "edit_customer")
+//                        {
+                           
+                            $data['customer_id']=$req->customer_id;
+                            $customer_model = new customer_model();
+                            $common_model = new common_model();
+                            $data['status'] = $common_model ->getstatus();
+                            $data['customer_details'] = $customer_model ->get_edit_customer_list($data);
+                            $data['contact_person_details'] = $customer_model ->get_edit_contact_person_list($data);
+                            return view('master.customer.edit_customer')->with('data',$data);
+//                        }
+//        
+//                    }
+//        
+//                    if($flag==1)
+//                    {
+//                        return "u r unautherized";
+//                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+    
+        
+        
 
-         return view('master.customer.edit_customer')->with('data',$data);
-//        var_dump($data['designation']);die;
     }
 
 

@@ -18,44 +18,46 @@ class enquiry_controller extends Controller
     }
 
     public function enquiry_master(){
-
-      return view('transaction.enquiry.enquiry_master');
+         
+         if(Session::get('user_id'))
+                {
+        $enquiry_model =new enquiry_model();
+        $data['enquiry_source']=4;//enquiry status=4 -> created   
+        $data['create_enquiry_count']=count($enquiry_model->create_enquiry_count($data));
+        $data['enquiry_source']=5;//enquiry status=5---->Quoted
+        $data['quoted_enquiry_count']=count($enquiry_model->create_enquiry_count($data));
+        $data['enquiry_source']=6;//enquiry status=6---->Won 
+        $data['won_enquiry_count']=count($enquiry_model->create_enquiry_count($data));
+        $data['enquiry_source']=7;//enquiry status=7---->Lost
+        $data['lost_enquiry_count']=count($enquiry_model->create_enquiry_count($data));
+        $data['enquiry_source']=8;//enquiry status=8---->Closed
+        $data['closed_enquiry_count']=count($enquiry_model->create_enquiry_count($data));
+        $data['enquiry_source']=9;//enquiry status=8---->Closed
+        $data['hold_enquiry_count']=count($enquiry_model->create_enquiry_count($data));
+             
+        return view('transaction.enquiry.enquiry_master')->with('data',$data);
+         }
+        else{
+              return view('login.login');
+        }
     }
 
 
-      public function add_enquiry()
+  public function add_enquiry()
     {
-//        if(Session::get('user_id'))
-//        {
-//            $flag =1;
-//            foreach(Session::get('functionName') as $row)
-//            {
-//                if($row->function_name == "add_designation")
-//                {
-//                  var_dump("kavith");
+ if(Session::get('user_id'))
+                {
                    $common_model = new common_model();
                    $data['status'] = $common_model ->getstatus();
                    $data['business_vertical'] = $common_model ->getbusiness_vertical();
                    $data['enquiry_source'] = $common_model ->getenquiry_source();
                    $data['company_list'] = $common_model ->getcompany_list();
-                   $data['employee_list'] = $common_model ->getemployee_list();
-
-      // var_dump($data);die;
-                    return view('transaction.enquiry.add_enquiry')->with('data',$data);
-//                }
-//
-//            }
-//
-//            if($flag==1)
-//            {
-//                return "u r unautherized";
-//            }
-//        }
-//        else
-//        {
-            return view('master.login.login');
-      //  }
-
+                   $data['employee_list'] = $common_model ->getemployee_list(); 
+                   return view('transaction.enquiry.add_enquiry')->with('data',$data);
+  }
+        else{
+              return view('login.login');
+        }
     }
 
 
@@ -75,7 +77,9 @@ class enquiry_controller extends Controller
    }
 
     public function insert_enquiry(request $req){
-
+			
+ if(Session::get('user_id'))
+                {
         DB::beginTransaction();
 
 try {
@@ -87,16 +91,29 @@ try {
         $data['enquiry_source']=0;
         $data['allotted_to']=0;
         $data['enquiry_date']="";
+        $data['quoted_date']="";
         $data['refered_by']="";
+        $data['project_name']="";
         $data['remarks']="";
+        $data['quotation_no']="";
+        $data['po_no']="";
+        $data['po_date']="";
+        $data['project_no']="";
         $data['total_price']="0.00";
-        $data['discount_percentage']="0.00";
+        $data['discount_percentage']="0";
         $data['discount_value']="0.00";
-        $data['gst_percentage']="0.00";
+        $data['gst_percentage']="0";
         $data['gst_value']="0.00";
         $data['net_total']="0.00";
         $data['enquiry']="";
         $data['enquiry_status']=1;
+        $data['invoice_no']="";
+        $data['invoice_date']="";
+        $data['transporter']="";
+        $data['delivery_date']="";
+        $data['lr_no']="";
+        $data['user_id']=Session::get('user_id');
+        $data['created_date']=date("Y-m-d H:i:s");
         if($req->company_name!=""){
            $data['company_name']=$req->company_name;
         }
@@ -124,6 +141,9 @@ try {
          if($req->refered_by!=""){
            $data['refered_by']=$req->refered_by;
         }
+       if($req->project_name!=""){
+           $data['project_name']=$req->project_name;
+        }
          if($req->remarks!=""){
            $data['remarks']=$req->remarks;
         }
@@ -146,7 +166,39 @@ try {
         if($req->net_total!=""){
            $data['net_total']=round($req->net_total,2);
         }
-
+		
+	if($req->quoted_date!=""){
+		 $data['quoted_date']=date("Y-m-d", strtotime($req->quoted_date));
+	}
+    if($req->quotation_no!=""){
+		 $data['quotation_no']=$req->quotation_no;
+	}
+     if($req->po_no!=""){
+		 $data['po_no']=$req->po_no;
+	}
+    if($req->po_date!=""){
+		 $data['po_date']=date("Y-m-d", strtotime($req->po_date));
+	}
+     if($req->project_no!=""){
+		 $data['project_no']=$req->project_no;
+	}
+       if($req->delivery_date!=""){
+		 $data['delivery_date']=date("Y-m-d", strtotime($req->delivery_date));
+	}  
+    
+ if($req->invoice_no!=""){
+		 $data['invoice_no']=$req->invoice_no;
+	}
+    if($req->invoice_date!=""){
+		 $data['invoice_date']=date("Y-m-d", strtotime($req->invoice_date));
+	}
+    if($req->transporter!=""){
+		 $data['transporter']=$req->transporter;
+	}
+    if($req->lr_no!=""){
+		 $data['lr_no']=$req->lr_no;
+	}
+    
 
         $validator = Validator::make($req->all(), [
 
@@ -154,28 +206,23 @@ try {
                    'contact_person' => 'required',
                    'business_vertical' => 'required',
                    'enquiry_source' => 'required|numeric',
+                   'project_name' => 'required',
                    'allotted_to' => 'required',
                    'enquiry_date' => 'required',
-                   'total_price' => 'required|numeric',
-                   'discount_percentage' => 'required|numeric|max:100|min:0',
-                   'discount_value' => 'required|numeric',
-                   'gst_percentage' => 'required|numeric|max:100|min:0',
-                   'gst_value' => 'required|numeric',
-                   'net_total' => 'required|numeric',
+                   'status' => 'required|numeric',
+
 
               ],[
-                    'company_name.required' => 'Company Name Is Required.',
+                     'company_name.required' => 'Company Name Is Required.',
                      'contact_person.required' => 'Contact Person  Is Required.',
-                    'business_vertical.required' => 'Business Vertical Is Required.',
+                     'business_vertical.required' => 'Business Vertical Is Required.',
                      'enquiry_source.required' => 'Enquiry Source Is Required.',
+                     'project_name.required' => 'Project Name Is Required.',
                      'allotted_to.required' => 'Allotted To Is Required.',
-                    'enquiry_date.required' => 'Enquiry Date Is Required.',
-                    'total_price.required' => 'Total Price Id Is Required.',
-                    'discount_percentage.required' => 'Discount Percentage Is Required.',
-                    'discount_value.required' => 'Discount Value Is Required.',
-                    'gst_percentage.required' => 'Gst pPercentage Is Required.',
-                    'gst_value.required' => 'Gst Value Is Required.',
-                    'net_total.required' => 'Net Total Is Required.',
+                     'enquiry_date.required' => 'Enquiry Date Is Required.',
+                     'enquiry_date.required' => 'Enquiry Date Is Required.',
+                     'status.required' => 'Enquiry Status Is Required.',
+
 
                ]);
 
@@ -183,7 +230,96 @@ try {
       {
           return response()->json(['error'=>$validator->errors()->all()]);
       }
-// var_dump($req->commonItems);die;
+
+	  if($req->status==5){
+		  $validator = Validator::make($req->all(), [
+
+                   'quotation_no' => 'required',
+                   'quoted_date' => 'required',
+
+
+              ],[
+                   
+                     'quotation_no.required' => 'Quoted Number Is Required.',
+                     'quoted_date.required' => 'Quoted Date Is Required.',
+
+
+               ]);
+
+       if(!$validator->passes())
+      {
+          return response()->json(['error'=>$validator->errors()->all()]);
+      }
+
+	  }
+	  if($req->status==6){
+		  $validator = Validator::make($req->all(), [
+
+                    
+                   'quotation_no' => 'required',
+                   'quoted_date' => 'required',
+                   'po_no' => 'required',
+                   'po_date' => 'required',
+                   'delivery_date' => 'required',
+                   'project_no' => 'required',
+
+
+              ],[
+                   
+                     'quotation_no.required' => 'Quoted Number Is Required.',
+                     'quoted_date.required' => 'Quoted Date Is Required.',
+                     'po_no.required' => 'Po Number Is Required.',
+                     'po_date.required' => 'Po Date Is Required.',
+                     'delivery_date.required' => 'Delivery Date Is Required.',
+                     'project_no.required' => 'Project Number Is Required.',
+
+
+               ]);
+
+       if(!$validator->passes())
+      {
+          return response()->json(['error'=>$validator->errors()->all()]);
+      }
+
+	  }
+      if($req->status==8){
+		  $validator = Validator::make($req->all(), [
+
+                    
+                   'quotation_no' => 'required',
+                   'quoted_date' => 'required',
+                   'po_no' => 'required',
+                   'po_date' => 'required',
+                   'project_no' => 'required',
+                   'delivery_date' => 'required',
+                   'invoice_no' => 'required',
+                   'invoice_date' => 'required',
+                   'transporter' => 'required',
+                   'lr_no' => 'required',
+
+
+              ],[
+                   
+                     'quotation_no.required' => 'Quoted Number Is Required.',
+                     'quoted_date.required' => 'Quoted Date Is Required.',
+                     'po_no.required' => 'Po Number Is Required.',
+                     'po_date.required' => 'Po Date Is Required.',
+                     'project_no.required' => 'Project Number Is Required.',
+                     'delivery_date.required' => 'Delivery Date Is Required.',
+                     'invoice_no.required' => 'Invoice Number Is Required.',
+                     'invoice_date.required' => 'Invoice Date Is Required.',
+                     'transporter.required' => 'Transporter Is Required.',
+                     'lr_no.required' => 'LR Number Is Required.',
+
+
+               ]);
+
+       if(!$validator->passes())
+      {
+          return response()->json(['error'=>$validator->errors()->all()]);
+      }
+
+	  }
       foreach($req->commonItems as $row)
                     {
 
@@ -213,10 +349,32 @@ try {
                             return response()->json(['error'=>$validator->errors()->all()]);
                         }
                     }
+	
+	      	$validator = Validator::make($req->all(), [
+
+                  
+                   'total_price' => 'required|numeric',
+                   'net_total' => 'required|numeric',    
+               
 
 
-    if($data['enquiry_id']>0){
-        $data['enquiry_status']=$req->status;
+              ],[
+                    'total_price.required' => 'Total Price Id Is Required.',                   
+                    'net_total.required' => 'Net Total Is Required.',     
+                  
+
+               ]);
+
+       if(!$validator->passes())
+      {
+          return response()->json(['error'=>$validator->errors()->all()]);
+      }
+  $data['enquiry_status']=$req->status;
+
+    if($data['enquiry_id']==0){
+        
+       
+      
             $get_count_enquiry=$enquiry_model->get_count_enquiry($data);
 
             if(count($get_count_enquiry)>0){
@@ -229,14 +387,9 @@ try {
             }
     }
 
-
     $insert_enquiry_value=$enquiry_model->insert_enquiry_details($data);
-
-
     if($insert_enquiry_value>0){
-
-
-              $data['enquiry_product_id']=$insert_enquiry_value;
+               $data['enquiry_product_id']=$insert_enquiry_value;
                $update_product = $enquiry_model->update_enquiry_product_details($data);
 
             foreach($req->commonItems as $ci)
@@ -269,7 +422,7 @@ try {
         DB::rollback();
                         return json_encode(array(
                             'status' => 0,
-                            'message' => "Enquiry Cannot Created "
+                            'message' => "Enquiry Cannot Created"
                         ));
     }
 
@@ -277,21 +430,109 @@ try {
     DB::rollback();
     // something went wrong
 }
+     }
+        else{
+              return view('login.login');
+        }
     }
 
-    public function view_enquiry(){
-  return view('transaction.enquiry.view_enquiry');
+public function view_enquiry(){
+   if(Session::get('user_id'))
+                {
+        $data['enquiry_status']=4;
+       $data['status_name']="New Enquiry";
+  return view('transaction.enquiry.view_enquiry')->with('data',$data);
+        }
+                else
+                {
+                    return view('login.login');
+                }
+} 
+public function view_enquiry_quoted(){
+   if(Session::get('user_id'))
+                {
+      $data['status_name']="Quoted Enquiry";
+        $data['enquiry_status']=5;
+  return view('transaction.enquiry.view_enquiry')->with('data',$data);
+        }
+                else
+                {
+                    return view('login.login');
+                }
+    
 }
-
-    public function get_enquiry_details(){
+public function view_enquiry_converted(){
+  if(Session::get('user_id'))
+                {
+       $data['status_name']="Projects";
+        $data['enquiry_status']=6;
+  return view('transaction.enquiry.view_enquiry')->with('data',$data);
+     }
+                else
+                {
+                    return view('login.login');
+                }
+}
+public function view_enquiry_lost(){
+  if(Session::get('user_id'))
+                {
+        $data['enquiry_status']=7;
+       $data['status_name']="Lost Enquiry";
+  return view('transaction.enquiry.view_enquiry')->with('data',$data); }
+                else
+                {
+                    return view('login.login');
+                }
+}
+    public function view_enquiry_closed(){
+  if(Session::get('user_id'))
+                {
+        $data['enquiry_status']=8;
+       $data['status_name']="Closed Projects";
+  return view('transaction.enquiry.view_enquiry')->with('data',$data); }
+                else
+                {
+                    return view('login.login');
+                }
+}
+    public function view_enquiry_hold(){
+  if(Session::get('user_id'))
+                {
+        $data['enquiry_status']=9;
+       $data['status_name']="Hold Projects";
+  return view('transaction.enquiry.view_enquiry')->with('data',$data); }
+                else
+                {
+                    return view('login.login');
+                }
+}
+public function view_total_enquiry(){
+    if(Session::get('user_id'))
+                {
+        $data['enquiry_status']=0;
+         $data['status_name']="All Enquiry";
+        return view('transaction.enquiry.view_enquiry')->with('data',$data); }
+                else
+                {
+                    return view('login.login');
+                }
+}
+    public function get_enquiry_details(request $req){
+     
+        
         $enquiry_model =new enquiry_model();
-        $data = $_GET;
-
-
-    $list=$enquiry_model->enquiry_view($data);
-    $list_tot=$enquiry_model->enquiry_view_tot($data);
-
-    //return $enq_list_tot;
+        $data['sourceid']=$req->sourceid;       
+        $data = $_GET; 
+        if( $data['sourceid']!=0){
+            
+        $list=$enquiry_model->enquiry_view($data);
+        $list_tot=$enquiry_model->enquiry_view_tot($data);
+       }
+        else{
+            
+             $list=$enquiry_model->enquiry_view1($data);
+             $list_tot=$enquiry_model->enquiry_view_tot1($data);
+        }
     if($list!==false)
      {
     $tot_val=$list_tot;
@@ -309,7 +550,8 @@ try {
     }
 
     public function edit_enquiry(request $req){
-
+  if(Session::get('user_id'))
+                {
                    $common_model = new common_model();
                    $enquiry_model =new enquiry_model();
                    $data['enquiry_id']=$req->enquiry_id;
@@ -319,14 +561,16 @@ try {
                    $data['company_list'] = $common_model ->getcompany_list();
                    $data['employee_list'] = $common_model ->getemployee_list();
                    $data['enquiry_status'] = $common_model ->get_enquiry_status();
-                   $data['contact_person'] = $enquiry_model ->get_contact_person_list($data);                   $data['contact_person_email'] = $enquiry_model ->get_contact_person_email($data);
+                   $data['contact_person'] = $enquiry_model ->get_contact_person_list($data);
+                   $data['contact_person_email'] = $enquiry_model ->get_contact_person_email($data);
+                   $data['enquiry_details']=$enquiry_model->get_edit_enquiry_details($data);
+                   $data['enquiry_product_details']=$enquiry_model->get_edit_enquiry_product_details($data);
 
-                   $data['enquiry_details']=$enquiry_model->get_edit_enquiry_details($data);                   $data['enquiry_product_details']=$enquiry_model->get_edit_enquiry_product_details($data);
-
-
-//       var_dump($data['enquiry_details']);
-//       var_dump($data['enquiry_product_details']);
-//        die;
                     return view('transaction.enquiry.edit_enquiry')->with('data',$data);
+         }
+                else
+                {
+                    return view('login.login');
+                }
     }
 }

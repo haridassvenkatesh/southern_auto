@@ -4,18 +4,41 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <a href="add_customer" class="btn btn-primary search_btn" style="float:right">
-								<i class="icon-plus icon-white"></i>Add
-						</a>
-                        <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                    <h1>View <span class="table-project-n">Customer</span></h1>
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="view_customer">Master</a> <span class="bread-slash">/</span>
+                                            </li>
+                                               <li><a href="view_customer">Customer</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">View Customer</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                       
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                  <ul id="myTabedu1" class="tab-review-design">
+                                      <li class="active"><a href="#description">View Customer</a></li>
+                                    </ul>
+                                
+                                <div class="add-product">
+                                <a href="add_customer"><i class="fa fa-plus-circle" aria-hidden="true" style="color:#FFF;"></i> Add Customer</a>
+                            </div>
+                            </div>
+                           
                             <div class="sparkline13-graph">
+                                 
                                 <div class="datatable-dashv1-list custom-datatable-overright">
-                                   
+                           
                                	<div class="table-responsive">
 
 							<table id="simple-table" class="table table-hover" data-side-pagination="server">
@@ -26,6 +49,7 @@
                             </div>
                         </div>
                     </div>
+               
                 </div>
             </div>
         </div>
@@ -55,24 +79,21 @@
 			},
 
 			columns: [ {
-					//"field": "enquiryNumber",
+				
 					"title": "SNo",
-					"align": "center",
-					//"valign": "bottom",
+					"align": "center",				
 					"visible": true,
 					"formatter": "runningFormatter"
 				}, {
 					"field": "customer_name",
 					"title": "Company Name",
-					"align": "left",
-					//"valign": "bottom",
+					"align": "left",					
 					"visible": true
 
 				}, {
 					"field": "gst_no",
 					"title": "GST No",
-					"align": "left",
-					//"valign": "bottom",
+					"align": "left",					
 					"visible": true
 
 				},
@@ -80,8 +101,7 @@
                       {
 					"field": "contact_no1",
 					"title": "Contact No",
-					"align": "left",
-					//"valign": "bottom",
+					"align": "left",				
 					"visible": true
 
 				},
@@ -89,8 +109,7 @@
                       {
 					"field": "email1",
 					"title": "Email",
-					"align": "left",
-					//"valign": "bottom",
+					"align": "left",					
 					"visible": true
 
 				}, {

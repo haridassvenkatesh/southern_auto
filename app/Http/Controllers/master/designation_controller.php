@@ -20,38 +20,62 @@ class designation_controller extends Controller
     
       public function add_designation()
     {
-//        if(Session::get('user_id'))
-//        {           
-//            $flag =1;
-//            foreach(Session::get('functionName') as $row)
-//            {
-//                if($row->function_name == "add_designation")
-//                {
-//                  var_dump("kavith");
-                    $common_model = new common_model();
-                   $data['status'] = $common_model ->getstatus();
-            
-//            var_dump($data['status']);die;
-                    return view('master.designation.add_designation')->with('data',$data);
-//                }
-//                
-//            }
-//            
-//            if($flag==1)
-//            {
-//                return "u r unautherized";
-//            }
-//        }
-//        else
-//        {
-            return view('master.login.login');
-      //  }
+          
+            if(Session::get('user_id'))
+                {
+                    $flag =1;
+                    foreach(Session::get('functionName') as $row)
+                    {
+                        if($row->function_name == "add_designation")
+                        {
+                           
+                            $common_model = new common_model();
+                            $data['status'] = $common_model ->getstatus(); 
+                            return view('master.designation.add_designation')->with('data',$data);
+                        }
+        
+                    }
+        
+                    if($flag==1)
+                    {
+                        return "u r unautherized";
+                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+          
+
         
     }
     
     public function view_designation(){
+        
+        
+         if(Session::get('user_id'))
+                {
+                    $flag =1;
+                    foreach(Session::get('functionName') as $row)
+                    {
+                        if($row->function_name == "view_designation")
+                        {
+                              return view('master.designation.view_designation');
+                        }
+        
+                    }
+        
+                    if($flag==1)
+                    {
+                        return "u r unautherized";
+                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
       
-        return view('master.designation.view_designation');
+     
     }
     
     
@@ -86,7 +110,8 @@ class designation_controller extends Controller
 //    }
     
     public function insert_designation(request $req){        
-       
+        if(Session::get('user_id'))
+                {
 DB::beginTransaction();
 
 try {
@@ -98,6 +123,7 @@ try {
     $data['description']=$req->design_description;
     $data['created_date']=date("Y-m-d H:i:s");
     $data['status']=$req->status;
+    $data['user_id']=Session::get('user_id');
     
      $validator = Validator::make($req->all(), [  
                      
@@ -178,17 +204,46 @@ try {
     DB::rollback();
     // something went wrong
 }
+             }
+                else
+                {
+                    return view('login.login');
+                }
     }
     
     public function edit_designation(request $req)
     {
-        $data['designation_id']=$req->designation_id;
-        $designation_model = new designation_model();
-        $common_model = new common_model();
-        $data['status'] = $common_model ->getstatus();        
-        $data['designation'] = $designation_model ->get_edit_designation_list($data);
-         return view('master.designation.edit_designation')->with('data',$data);
-//        var_dump($data['designation']);die;
+        
+        
+         if(Session::get('user_id'))
+                {
+                    $flag =1;
+                    foreach(Session::get('functionName') as $row)
+                    {
+                        if($row->function_name == "edit_designation")
+                        {
+                               $data['designation_id']=$req->designation_id;
+                               $designation_model = new designation_model();
+                               $common_model = new common_model();
+                               $data['status'] = $common_model ->getstatus();        
+                               $data['designation'] = $designation_model ->get_edit_designation_list($data);
+                               return view('master.designation.edit_designation')->with('data',$data);
+
+                        }
+        
+                    }
+        
+                    if($flag==1)
+                    {
+                        return "u r unautherized";
+                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+        
+       
     }
     
 }

@@ -1,11 +1,14 @@
+<style>
+	.header-right-info ul.header-right-menu li .author-log {
+    left: -89px;
+}
+</style>
 <div class="all-content-wrapper">
-    
-    
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="<?php echo e(asset('/img/logo/logo.png')); ?>" alt="" /></a>
+                        
                     </div>
                 </div>
             </div>
@@ -38,19 +41,14 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-															<img src="<?php echo e(asset('/img/product/pro4.jpg')); ?>" alt="" />
-															<span class="admin-name">Admin</span>
+<!--															<img src="<?php echo e(asset('/img/product/pro4.jpg')); ?>" alt="" />-->
+															<span class="admin-name"><?php echo Session::get('emp_name'); ?></span>
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-<!--
-                                              
--->
-                                                        <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                        <li><a href="change_password"><span class="edu-icon edu-user-rounded author-log-ic"></span>Change Password</a>
                                                         </li>
-<!--
--->
-                                                        <li><a href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a href="logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -72,26 +70,28 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Dashboard <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                         
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="dashboard">Dashboard <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        
                                         </li>
                                            <li><a data-toggle="collapse" data-target="#demopro" href="#">Master <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
+												<?php if(Session::get('designation_id')==1){ ?>
                                                 <li><a href="view_designation">Designation</a>
-                                                </li>
+                                                </li> <?php  } ?>
                                                 <li><a href="view_employee">Employee</a>
                                                 </li>
                                                 <li><a href="view_customer">Customer</a>
                                                 </li>                                               
                                             </ul>
                                         </li>
+                                       
 <!--
                                         <li><a data-toggle="collapse" data-target="#Charts" href="enquiry_master">Enquiry <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                          
                                         </li> 
 -->
                                         
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="view_enquiry">Enquiry <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="enquiry_master">Transaction <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                          
                                         </li>
                                     </ul>

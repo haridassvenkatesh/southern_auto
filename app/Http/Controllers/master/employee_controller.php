@@ -22,37 +22,39 @@ class employee_controller extends Controller
     
       public function add_employee()
     {
-//        if(Session::get('user_id'))
-//        {           
-//            $flag =1;
-//            foreach(Session::get('functionName') as $row)
-//            {
-//                if($row->function_name == "add_designation")
-//                {
-//                  var_dump("kavith");
+         if(Session::get('user_id'))
+                {
+                    $flag =1;
+                    foreach(Session::get('functionName') as $row)
+                    {
+                        if($row->function_name == "add_employee")
+                        {
+                              
                    $common_model = new common_model();
                    $data['dsesignation'] = $common_model ->get_designation_details();
                    $data['status'] = $common_model ->getstatus();
-            
-//            var_dump($data['status']);die;
                     return view('master.employee.add_employee')->with('data',$data);
-//                }
-//                
-//            }
-//            
-//            if($flag==1)
-//            {
-//                return "u r unautherized";
-//            }
-//        }
-//        else
-//        {
-            return view('master.login.login');
-      //  }
+
+                        }
         
+                    }
+        
+                    if($flag==1)
+                    {
+                        return "u r unautherized";
+                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+
+
     }
     
     public function insert_employee(request $req){
+          if(Session::get('user_id'))
+                {
      DB::beginTransaction();
 
 try {   
@@ -71,6 +73,7 @@ try {
         $data['remarks']=$req->remarks;
         $data['releaving_date']="";
         $data['created_date']=date("Y-m-d H:i:s");
+        $data['user_id']=Session::get('user_id');
         if($data['dob']!=""){
                      $data['dob'] = date("Y-m-d", strtotime($data['dob']));
                 }
@@ -129,9 +132,10 @@ try {
              
     if($data['employee_id']>0){
     
-        
+       
         
      $count_employee=$employee_model->count_employee_id($data);
+//		 var_dump($count_employee);die;
      if(count($count_employee)>0){
          
           $validator = Validator::make($req->all(), [
@@ -246,14 +250,40 @@ try {
     DB::rollback();
     // something went wrong
 } 
-        
+     }
+                else
+                {
+                    return view('login.login');
+                }    
     }
     
     
     public function view_employee(){
       
-      
-        return view('master.employee.view_employee');
+      if(Session::get('user_id'))
+                {
+//                    $flag =1;
+//                    foreach(Session::get('functionName') as $row)
+//                    {
+//                        if($row->function_name == "view_employee")
+//                        {
+                              
+                   return view('master.employee.view_employee');
+
+//                        }
+//        
+//                    }
+//        
+//                    if($flag==1)
+//                    {
+//                        return "u r unautherized";
+//                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+       
     }
     
     
@@ -284,16 +314,39 @@ try {
     
     public function edit_employee(request $req)
     {
-        $data['employee_id']=$req->employee_id;
-        $employee_model=new employee_model();
-        $common_model = new common_model();
-        $data['dsesignation'] = $common_model ->get_designation_details();
-        $data['status'] = $common_model ->getstatus();
-        $data['employee_details'] = $employee_model ->get_edit_employee_list($data);
         
-//        var_dump( $data['employee_details']);die;
-         return view('master.employee.edit_employee')->with('data',$data);
-//        var_dump($data['designation']);die;
+         if(Session::get('user_id'))
+                {
+                    $flag =1;
+                    foreach(Session::get('functionName') as $row)
+                    {
+                        if($row->function_name == "edit_employee")
+                        {
+                              
+        
+                            $data['employee_id']=$req->employee_id;
+                            $employee_model=new employee_model();
+                            $common_model = new common_model();
+                            $data['dsesignation'] = $common_model ->get_designation_details();
+                            $data['status'] = $common_model ->getstatus();
+                            $data['employee_details'] = $employee_model ->get_edit_employee_list($data);
+                            return view('master.employee.edit_employee')->with('data',$data);
+
+                        }
+        
+                    }
+        
+                    if($flag==1)
+                    {
+                        return "u r unautherized";
+                    }
+                }
+                else
+                {
+                    return view('login.login');
+                }
+       
+
     }
     
 }

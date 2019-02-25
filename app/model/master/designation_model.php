@@ -20,6 +20,8 @@ class designation_model extends Model
                 ->update(array(
                                 'name'=>$data['designation_name'],
                                'description'=>$data['description'],
+                               'updated_by'=>$data['user_id'],
+                               'updated_date'=>$data['created_date'],
                                'status'=>$data['status']
                 )
                         );
@@ -33,8 +35,10 @@ class designation_model extends Model
                 ->insert(array('name'=>$data['designation_name'],
                                'description'=>$data['description'],
                                'parent_id'=>"0",
-                               'created_by'=>"1",
+                               'created_by'=>$data['user_id'],
+                               'updated_by'=>$data['user_id'],
                                'created_date'=>$data['created_date'],
+                               'updated_date'=>$data['created_date'],
                                'status'=>$data['status']));
         
       
@@ -52,7 +56,8 @@ class designation_model extends Model
            
         $result = DB::table('designation')
               
-            ->join('status', 'status.status_id', '=', 'designation.status')           
+            ->join('status', 'status.status_id', '=', 'designation.status') 
+            ->where('designation.designation_id','!=','1')
             ->select('designation.designation_id','designation.name as designation_name','designation.description','status.name as status_name','status.status_id');
         
          if(!empty($data['search']))
@@ -91,7 +96,7 @@ class designation_model extends Model
         
          $result = DB::table('designation')
               
-            ->join('status', 'status.status_id', '=', 'designation.status')           
+            ->join('status', 'status.status_id', '=', 'designation.status')            ->where('designation.designation_id','!=','1')
             ->select('designation.designation_id','designation.name as designation_name','designation.description','status.name as status_name','status.status_id');
         
          if(!empty($data['search']))
