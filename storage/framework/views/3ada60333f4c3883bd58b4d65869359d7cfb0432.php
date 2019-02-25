@@ -49,6 +49,10 @@
     <!-- tab JS
 		============================================ -->
     <script src="<?php echo e(asset('/js/tab.js')); ?>"></script>
+    <script src="<?php echo e(asset('/js/c3-charts/d3.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('/js/c3-charts/c3.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('/js/c3-charts/c3-active.js')); ?>"></script>
+   
     <!-- icheck JS
 		============================================ -->
     <script src="<?php echo e(asset('/js/icheck/icheck.min.js')); ?>"></script>

@@ -74,6 +74,8 @@
 		============================================ -->
     <link rel="stylesheet" href="<% asset('/css/data-table/bootstrap-table.css') %>">
     <link rel="stylesheet" href="<% asset('/css/data-table/bootstrap-editable.css') %>">
+
+    <link rel="stylesheet" href="<% asset('/css/c3/c3.min.css') %>">    
      
     <link href="<% asset('/css/chosen/bootstrap-chosen.css') %>" rel="stylesheet"/>
     <script src="<% asset('/js/jquery.min.js') %>"></script>

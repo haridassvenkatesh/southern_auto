@@ -74,6 +74,8 @@
 		============================================ -->
     <link rel="stylesheet" href="<?php echo e(asset('/css/data-table/bootstrap-table.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('/css/data-table/bootstrap-editable.css')); ?>">
+
+    <link rel="stylesheet" href="<?php echo e(asset('/css/c3/c3.min.css')); ?>">    
      
     <link href="<?php echo e(asset('/css/chosen/bootstrap-chosen.css')); ?>" rel="stylesheet"/>
     <script src="<?php echo e(asset('/js/jquery.min.js')); ?>"></script>
