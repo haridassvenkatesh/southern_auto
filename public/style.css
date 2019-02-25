@@ -1216,9 +1216,12 @@ ul.breadcome-menu li a:hover{
 /*  11. Professors
 /*----------------------------------------*/
 .hpanel .panel-body {
-    background: #fff;
-    border-radius: 2px;
-    padding: 20px;
+    padding: 45px;
+    position: relative;
+    border-radius: 15px;
+    /* border: 3px solid #68422b; */
+    box-shadow: 0 8px 6px -6px black;
+    background-color: #f5f5f5;
     position: relative;
 }
 .program-widget-bc .table.table-striped{
@@ -4748,4 +4751,17 @@ div#sparklinehome canvas {
     .contaniner_class{
         margin-left:0px;
     }
+}
+
+
+.login_logo{
+    text-align: center;
+    margin: 28px;
+}
+
+.login_bgpg{
+    background: linear-gradient(135deg, rgb(255, 255, 255) 0%, #5d3821 100%);
+}
+.hpanel .panel-body{
+    
 }

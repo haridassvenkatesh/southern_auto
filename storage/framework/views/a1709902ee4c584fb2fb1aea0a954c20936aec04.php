@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
@@ -46,24 +46,24 @@
 </head>
 <style>
 body  {
-/*  background-image: url("https://marketing4ecommerce.net/wp-content/uploads/2015/10/nuevos-medios-de-comunicacion-online-1-759x477.png");*/
   background-color: #cccccc;
 }    
 </style>
 <body >
   <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
-	<div class="error-pagewrap">
+	<div class="error-pagewrap login_bgpg">
 		<div class="error-page-int">
-			<div class="text-center m-b-md custom-login">
-				<h3>LOGIN</h3>
-				
-			</div>
+			
 			<div class="content-error">
 				<div class="hpanel">
-                     <div class="alert alert-danger print-error-msg" style="display:none">
-                     <ul></ul>
-                  </div>
+                   
                     <div class="panel-body">
+                      <div class="login_logo">
+                        <img class="main-logo" src="<?php echo e(asset('/img/logo/logo.png')); ?>" alt="" />
+                      </div>
+<div class="alert alert-danger print-error-msg" style="display:none">
+                         <ul></ul>
+                      </div>
                       <form id="loginForm">
                             <div class="form-group">
                                 <label class="control-label" for="username">Username</label>
