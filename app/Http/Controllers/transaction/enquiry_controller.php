@@ -526,6 +526,8 @@ public function view_total_enquiry(){
         if( $data['sourceid']!=0){
             
         $list=$enquiry_model->enquiry_view($data);
+//            echo"<pre>";
+//            print_r($list);
         $list_tot=$enquiry_model->enquiry_view_tot($data);
        }
         else{
@@ -563,9 +565,11 @@ public function view_total_enquiry(){
                    $data['enquiry_status'] = $common_model ->get_enquiry_status();
                    $data['contact_person'] = $enquiry_model ->get_contact_person_list($data);
                    $data['contact_person_email'] = $enquiry_model ->get_contact_person_email($data);
+                   $data['cur_quotation_no']=$enquiry_model->cur_quotation_no($data);
+                   $data['cur_project_no']=$enquiry_model->cur_project_no($data);
                    $data['enquiry_details']=$enquiry_model->get_edit_enquiry_details($data);
                    $data['enquiry_product_details']=$enquiry_model->get_edit_enquiry_product_details($data);
-
+//var_dump($data['cur_quotation_no']);die;
                     return view('transaction.enquiry.edit_enquiry')->with('data',$data);
          }
                 else

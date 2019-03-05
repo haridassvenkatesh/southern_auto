@@ -31,7 +31,13 @@
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        
+                                        <?php if($data['enquiry_status']!=4){ ?>
+                                         <button type="button" class="btn btn-success" style="float: right;">Total Amount <span class="badge" style="font-size: 13px;" id="total_amount1">INR 0</span></button>
+                                        <?php } ?>
+                                     
+                                       
+<!--                                        <span class="badge badge-success">Success</span>-->
+<!--                                            margin-left: 420px!important;-->
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +194,15 @@
                     "formatter": "dateLinks1"
 
 				}, 
+                      
+				{
+					"field": "project_no",
+					"title": "Project No",
+					"align": "left",
+					//"valign": "bottom",
+					"visible": true,
+					
+				}, 
                         {
 					"field": "invoice_no",
 					"title": "Invoice No",
@@ -320,9 +335,28 @@
 					"align": "left",
                           
 					//"valign": "bottom",
+					"visible": false
+
+				} ,{
+					"field": "amo_with_out_tax",
+					"title": "Amount",
+					"align": "left",
+                          "formatter": "total_amount_calculation",
+					//"valign": "bottom",
 					"visible": true
 
 				},
+                      
+//                      {
+//					"field": "amo_with_out_tax",
+//				    "title": "Amount",
+//					"align": "left",
+//                    "formatter": "total_amount_calculation",
+//					//"valign": "bottom",
+//					"visible": true
+//
+//				},
+//                      
                       {
 					"field": "remarks",
 					"title": "Remarks",
@@ -356,6 +390,15 @@
 		$('.columns').addClass('sea_po_abs_2');
 
 	});
+    var total1=0;
+    function total_amount_calculation(value, row, index){
+console.log(total1);
+console.log(row.amo_with_out_tax);
+       total1=parseFloat(total1)+parseFloat(row.amo_with_out_tax);
+        console.log(total1);
+        $('#total_amount1').text('INR '+total1);
+        return row.amo_with_out_tax;
+    }
 
     function dateLinks1(param_date) {
 		var d = new Date(param_date.split("-"));

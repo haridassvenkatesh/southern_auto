@@ -18,7 +18,9 @@
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Master</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
 								<?php if(Session::get('designation_id')==1){ ?>
-                                <li><a title="Designation" href="view_designation"><span class="mini-sub-pro">Designation</span></a></li> <?php }?>
+                                <li><a title="Academic Year" href="view_academic"><span class="mini-sub-pro">Academic Year</span></a></li>
+                                 <li><a title="Designation" href="view_designation"><span class="mini-sub-pro">Designation</span></a></li>
+                                <?php }?>
                                 <li><a title="Employee" href="view_employee"><span class="mini-sub-pro">Employee</span></a></li>
                                 <li><a title="Customer" href="view_customer"><span class="mini-sub-pro">Customer</span></a></li>
                                 

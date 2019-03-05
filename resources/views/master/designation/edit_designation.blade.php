@@ -57,7 +57,7 @@
                                                       $selected='';
                                                       if($row->status_id == $data['designation'][0]->status)
                                                       $selected='selected';
-                                                      ?>
+                                                      
                                                    ?>
                                                    <option value="<?= $row->status_id;?>" <?=$selected?>><?= $row->name;?></option>
                                                    <?php } ?>

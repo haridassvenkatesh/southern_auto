@@ -27,6 +27,14 @@ Route::get('get_designation_details', 'master\designation_controller@get_designa
 Route::post('insert_designation', 'master\designation_controller@insert_designation');
 
 
+//Master Academic Year Inputs
+
+Route::get('view_academic', 'master\academic_controller@view_academic_inputs');
+Route::get('add_academic', 'master\academic_controller@add_academic_inputs');
+Route::get('edit_academic', 'master\academic_controller@edit_academic_inputs');
+Route::post('insert_academic', 'master\academic_controller@insert_academic');
+Route::get('get_academic_details', 'master\academic_controller@get_academic_details');
+
 //Master Employee Details
 Route::get('add_employee', 'master\employee_controller@add_employee');
 Route::post('insert_employee', 'master\employee_controller@insert_employee');

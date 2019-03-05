@@ -144,7 +144,7 @@ public function insert_enquiry_product_details($data){
           
               ->where(array('enquiry.enquiry_status'=>$data['sourceid'],'customer.status'=>"1",'customer_contact_person.status'=>"1",'business_vertical.status'=>"1",'enquiry_source.status'=>"1",'employee.status'=>"1"))
               
-            ->select('enquiry.id as enquiry','enquiry.enquiry_id as enquiry_id','customer.company_name','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.created_date as enq_created','enquiry.enquiry_status',DB::raw('DATEDIFF(".$created_date.",CAST(enquiry.enquiey_date as char)) AS difference'),'enquiry.project_name as project_name','enquiry.remarks as remarks','enquiry.quoted_date','enquiry.quotation_no','enquiry.po_no','enquiry.po_date','enquiry.project_no','enquiry.invoice_no','enquiry.invoice_date','enquiry.transporter','enquiry.lr_no','enquiry.delivery_date',DB::raw('DATEDIFF(CAST(enquiry.delivery_date as char),".$created_date.") AS delv_difference'));
+            ->select('enquiry.id as enquiry','enquiry.enquiry_id as enquiry_id','customer.company_name','enquiry.amo_with_out_tax','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.created_date as enq_created','enquiry.enquiry_status',DB::raw('DATEDIFF(".$created_date.",CAST(enquiry.enquiey_date as char)) AS difference'),'enquiry.project_name as project_name','enquiry.remarks as remarks','enquiry.quoted_date','enquiry.quotation_no','enquiry.po_no','enquiry.po_date','enquiry.project_no','enquiry.invoice_no','enquiry.invoice_date','enquiry.transporter','enquiry.lr_no','enquiry.delivery_date',DB::raw('DATEDIFF(CAST(enquiry.delivery_date as char),".$created_date.") AS delv_difference'));
         
          if(!empty($data['search']))
 		{
@@ -165,6 +165,7 @@ public function insert_enquiry_product_details($data){
                 ->orWhere('enquiry.invoice_no',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('enquiry.transporter',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('enquiry.lr_no',  'LIKE' ,'%'.$data['search'].'%')
+                ->orWhere('enquiry.amo_with_out_tax',  'LIKE' ,'%'.$data['search'].'%')
 //                ->orWhere('enquiry.enquiey_date',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere(DB::raw("(DATE_FORMAT(enquiry.enquiey_date,'%d-%m-%Y'))"), 'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere(DB::raw("(DATE_FORMAT(enquiry.invoice_date,'%d-%m-%Y'))"), 'LIKE' ,'%'.$data['search'].'%')
@@ -216,7 +217,7 @@ public function insert_enquiry_product_details($data){
           
               ->where(array('enquiry.enquiry_status'=>$data['sourceid'],'customer.status'=>"1",'customer_contact_person.status'=>"1",'business_vertical.status'=>"1",'enquiry_source.status'=>"1",'employee.status'=>"1"))
               
-             ->select('enquiry.id as enquiry','enquiry.enquiry_id as enquiry_id','customer.company_name','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.created_date as enq_created','enquiry.enquiry_status',DB::raw('DATEDIFF(".$created_date.",CAST(enquiry.enquiey_date as char)) AS difference'),'enquiry.project_name as project_name','enquiry.remarks as remarks','enquiry.quoted_date','enquiry.quotation_no','enquiry.po_no','enquiry.po_date','enquiry.project_no','enquiry.invoice_no','enquiry.invoice_date','enquiry.transporter','enquiry.lr_no','enquiry.delivery_date',DB::raw('DATEDIFF(CAST(enquiry.delivery_date as char),".$created_date.")) AS delv_difference'));
+             ->select('enquiry.id as enquiry','enquiry.enquiry_id as enquiry_id','customer.company_name','enquiry.amo_with_out_tax','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.created_date as enq_created','enquiry.enquiry_status',DB::raw('DATEDIFF(".$created_date.",CAST(enquiry.enquiey_date as char)) AS difference'),'enquiry.project_name as project_name','enquiry.remarks as remarks','enquiry.quoted_date','enquiry.quotation_no','enquiry.po_no','enquiry.po_date','enquiry.project_no','enquiry.invoice_no','enquiry.invoice_date','enquiry.transporter','enquiry.lr_no','enquiry.delivery_date',DB::raw('DATEDIFF(CAST(enquiry.delivery_date as char),".$created_date.")) AS delv_difference'));
         
          if(!empty($data['search']))
 		{
@@ -237,6 +238,7 @@ public function insert_enquiry_product_details($data){
                 ->orWhere('enquiry.invoice_no',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('enquiry.transporter',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('enquiry.lr_no',  'LIKE' ,'%'.$data['search'].'%')
+                ->orWhere('enquiry.amo_with_out_tax',  'LIKE' ,'%'.$data['search'].'%')
 //                ->orWhere('enquiry.enquiey_date',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere(DB::raw("(DATE_FORMAT(enquiry.enquiey_date,'%d-%m-%Y'))"), 'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere(DB::raw("(DATE_FORMAT(enquiry.invoice_date,'%d-%m-%Y'))"), 'LIKE' ,'%'.$data['search'].'%')
@@ -312,13 +314,14 @@ public function insert_enquiry_product_details($data){
           
               ->where(array('customer.status'=>"1",'customer_contact_person.status'=>"1",'business_vertical.status'=>"1",'enquiry_source.status'=>"1",'employee.status'=>"1"))
               
-            ->select('enquiry.id as enquiry','enquiry.enquiry_id as enquiry_id','customer.company_name','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.project_name','enquiry.remarks','enquiry.quoted_date','enquiry.quotation_no');
+            ->select('enquiry.id as enquiry','enquiry.amo_with_out_tax','enquiry.enquiry_id as enquiry_id','customer.company_name','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.project_name','enquiry.remarks','enquiry.quoted_date','enquiry.quotation_no');
         
          if(!empty($data['search']))
 		{
 			
                $result =  $result->where('enquiry.enquiry_id',  'LIKE' ,'%'.$data['search'].'%')
                  ->orWhere('enquiry.project_name',  'LIKE' ,'%'.$data['search'].'%')
+                ->orWhere('enquiry.amo_with_out_tax',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('enquiry.remarks',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('customer.company_name',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('customer_contact_person.name',  'LIKE' ,'%'.$data['search'].'%')
@@ -372,13 +375,14 @@ public function insert_enquiry_product_details($data){
              
              ->where(array('customer.status'=>"1",'customer_contact_person.status'=>"1",'business_vertical.status'=>"1",'enquiry_source.status'=>"1",'employee.status'=>"1"))
               
-            ->select('enquiry.id as enquiry','enquiry.enquiry_id as enquiry_id','customer.company_name','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.project_name','enquiry.remarks','enquiry.quoted_date','enquiry.quotation_no');
+            ->select('enquiry.id as enquiry','enquiry.amo_with_out_tax','enquiry.enquiry_id as enquiry_id','customer.company_name','customer_contact_person.name as customer_contact_person','business_vertical.name as business_vertical','enquiry_source.name as enquiry_source','employee.name as employeename','enquiry.enquiey_date','status.name as status_name','enquiry.net_value','status.status_id','customer_contact_person.email as email_id','customer_contact_person.phone_no','enquiry.project_name','enquiry.remarks','enquiry.quoted_date','enquiry.quotation_no');
         
          if(!empty($data['search']))
 		{
 			
               $result =   $result->where('enquiry.enquiry_id',  'LIKE' ,'%'.$data['search'].'%')
                  ->orWhere('enquiry.project_name',  'LIKE' ,'%'.$data['search'].'%')
+                 ->orWhere('enquiry.amo_with_out_tax',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('enquiry.remarks',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('customer.company_name',  'LIKE' ,'%'.$data['search'].'%')
                 ->orWhere('customer_contact_person.name',  'LIKE' ,'%'.$data['search'].'%')
@@ -402,5 +406,78 @@ public function insert_enquiry_product_details($data){
 		{
 			return false;
 		}
+    }
+    
+    public function cur_quotation_no($data){
+        
+        $c=DB::select('SELECT c1.year,c1.quotation_no,c1.q_start_no,(select count(*) from enquiry a11 where a11.enquiry_status!=4 and DATE_FORMAT(a11.enquiey_date,"%Y")=DATE_FORMAT(a1.enquiey_date,"%Y")) as count_enquiry from enquiry a1  
+       inner join academic_year  c1 on c1.year=DATE_FORMAT(a1.enquiey_date,"%Y") where DATE_FORMAT(a1.enquiey_date,"%Y")  in (select DATE_FORMAT(b1.enquiey_date,"%Y")  from enquiry b1 where b1.id=?) and c1.status=1  order by c1.year desc limit 1',array($data['enquiry_id']));      
+        
+        return $c;
+
+    }
+    
+     public function cur_project_no($data){
+        
+        $c=DB::select('SELECT c1.year,c1.project_no,c1.proj_start_no,(select count(*) from enquiry a11 where a11.enquiry_status not in (4,5) and DATE_FORMAT(a11.enquiey_date,"%Y")=DATE_FORMAT(a1.enquiey_date,"%Y")) as count_enquiry from enquiry a1  
+       inner join academic_year  c1 on c1.year=DATE_FORMAT(a1.enquiey_date,"%Y") where DATE_FORMAT(a1.enquiey_date,"%Y")  in (select DATE_FORMAT(b1.enquiey_date,"%Y")  from enquiry b1 where b1.id=?) and c1.status=1 order by c1.year desc limit 1',array($data['enquiry_id']));      
+        
+        return $c;
+
+    }
+    
+    public function target_amount_calculate($data){
+        $target_amount=0;
+        $c=DB::select('SELECT * from academic_year where status=1 and year=?',array($data['year']));
+        if(count($c)>0){
+             foreach( $c as $row){
+                  if($row->revenue_profit !=""){
+                $target_amount=$row->revenue_profit;
+                  }
+             }
+        }       
+        return $target_amount;
+        
+    }
+    
+    public function total_revenue_invoice($data){
+          $total_amount=0;
+        $c=DB::select('SELECT sum(amo_with_out_tax) as total from enquiry where status=1 and enquiry_status in (8)');
+         if(count($c)>0){
+        foreach( $c as $row){
+             if($row->total !=""){
+         $total_amount=$row->total;
+             }
+        }
+         }
+        return $total_amount;
+    }
+    
+    public function total_revenue_po($data){
+        
+          $total_amount=0;
+        $c=DB::select('SELECT sum(amo_with_out_tax) as total from enquiry where status=1 and enquiry_status in (6,8)');
+         if(count($c)>0){
+        foreach( $c as $row){
+            if($row->total !=""){
+                 $total_amount=$row->total;
+            }
+        
+        }
+         }
+        return $total_amount;
+    }
+    public function total_revenue_lead($data){
+        
+          $total_amount=0;
+        $c=DB::select('SELECT sum(amo_with_out_tax) as total from enquiry where status=1 and enquiry_status in (5,6,8)');
+         if(count($c)>0){
+        foreach( $c as $row){
+             if($row->total !=""){
+         $total_amount=$row->total;
+             }
+        }
+         }
+        return $total_amount;
     }
 }

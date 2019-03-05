@@ -9,7 +9,7 @@
                   <div class="row">
                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <ul class="breadcome-menu">
-                           <li><a href="">Master</a> <span class="bread-slash">/</span>
+                           <li><a href="view_designation">Master</a> <span class="bread-slash">/</span>
                            </li>
                            <li><a href="view_designation">Designation</a> <span class="bread-slash">/</span>
                            </li>

@@ -76,8 +76,11 @@
                                            <li><a data-toggle="collapse" data-target="#demopro" href="#">Master <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
 												<?php if(Session::get('designation_id')==1){ ?>
+                                                <li><a href="view_academic">Academic Year</a>
+                                                </li>
                                                 <li><a href="view_designation">Designation</a>
-                                                </li> <?php  } ?>
+                                                </li>                                                 
+                                                <?php  } ?>
                                                 <li><a href="view_employee">Employee</a>
                                                 </li>
                                                 <li><a href="view_customer">Customer</a>

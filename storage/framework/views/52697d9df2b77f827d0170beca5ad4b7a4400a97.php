@@ -17,19 +17,19 @@
                               	$statusname="New Enquiry";
                               }
                               if($data['enquiry_details'][0]->enquiry_status==5){
-                              	$statusname="Enquiry Quoted";
+                              	$statusname="Quoted Enquiry";
                               }
                               if($data['enquiry_details'][0]->enquiry_status==6){
-                              	$statusname="Enquiry Converted";
+                              	$statusname="Converted Enquiry";
                               }
                               if($data['enquiry_details'][0]->enquiry_status==7){
-                              	$statusname="Enquiry Lost";
+                              	$statusname="Lost Enquiry";
                               }
                               if($data['enquiry_details'][0]->enquiry_status==8){
-                              	$statusname="Enquiry Closed";
+                              	$statusname="Project Closed";
                               }
                               if($data['enquiry_details'][0]->enquiry_status==9){
-                              	$statusname="Enquiry Hold";
+                              	$statusname="Project Hold";
                               }
                               
                               ?>
@@ -198,8 +198,23 @@
                                              </div>
                                             
                                                <div class="form-group">
+                                                   <?php 
+                                                    $quotation_no="";
+                                                   if($data['enquiry_details'][0]->quotation_no==""){
+                                                    foreach($data['cur_quotation_no'] as $row){
+                                                        $quo_no=($row->q_start_no)+($row->count_enquiry);
+                                                        $quotation_no=$row->quotation_no."".$quo_no;
+                                                    }
+                                                                                                          
+                                                   }
+                                                   else{
+                                                      $quotation_no=$data['enquiry_details'][0]->quotation_no;
+                                                
+                                                    }
+                                                    
+                                                   ?>
                                                 <label>Quotation No <span style="color:red">*</span></label>
-                                                <input name="quotation_no" id="quotation_no" type="text" class="form-control" placeholder="Quotation No"  value="<?php echo e($data['enquiry_details'][0]->quotation_no); ?>">
+                                                <input name="quotation_no" id="quotation_no" type="text" class="form-control" placeholder="Quotation No"  value="<?php echo e($quotation_no); ?>" readonly>
                                              </div>
                                                <div class="form-group">
                                                 <label>Quoted Date <span style="color:red">*</span></label>
@@ -233,7 +248,22 @@
                                              </div>
                                                <div class="form-group" id="convert_status3" style="display:<?= $display; ?>">
                                                 <label>Project No <span style="color:red">*</span></label>
-                                                <input name="project_no" id="project_no" type="text" class="form-control" placeholder="Project No"  value="<?php echo e($data['enquiry_details'][0]->project_no); ?>">
+                                                     <?php 
+                                                    $project_no="";
+                                                   if($data['enquiry_details'][0]->project_no==""){
+                                                    foreach($data['cur_project_no'] as $row){
+                                                        $pro_no=($row->proj_start_no)+($row->count_enquiry);
+                                                        $project_no=$row->project_no."".$pro_no;
+                                                    }
+                                                                                                          
+                                                   }
+                                                   else{
+                                                      $project_no=$data['enquiry_details'][0]->project_no;
+                                                
+                                                    }
+                                                    
+                                                   ?>
+                                                <input name="project_no" id="project_no" type="text" class="form-control" placeholder="Project No"  value="<?php echo e($project_no); ?>" readonly>
                                              </div>
                                                <div class="form-group" id="convert_status8" style="display:<?= $display; ?>">
                                                 <label>Delivery Date <span style="color:red">*</span></label>
